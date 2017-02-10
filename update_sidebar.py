@@ -4,42 +4,61 @@ import time, threading
 import praw
 
 import twitch
+import gosu
 
 r = None
+subname = "dota2test"
 
 def login():
     global r
 
-    r = praw.Reddit(client_id='hnexQa51gEfhzg',
-                         client_secret='wE5-dMBrclX0N99i7ANY35sqUYM',
-                         password='',
+    r = praw.Reddit(client_id='bjOTTvmLehHqwQ',
+                         client_secret='g4IK796qD4nuHDTEL7Clzws2XEo',
+                         password='!',
                          user_agent='Dota 2 sidebar bot',
-                         username='VRCbot')
-def update_streamers():
-    sub = r.subreddit("dota2test")
-    mod = sub.mod
-    settings = mod.settings()
-    sidebar_contents = settings['description']
+                         username='VRCkid')
 
-    print settings
-
+def update_streamers(sidebar_contents):
     header = "[*Livestreams*](#heading)"
     footer = "**[More Live Streams]" 
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
 
-    #print sidebar_contents[header_index:footer_index]
-
     new_sidebar = sidebar_contents[:header_index] + twitch.get_top_channels() + sidebar_contents[footer_index:]
 
-    #print new_sidebar
+    return new_sidebar
+
+def update_matches(sidebar_contents):
+    header = "[*Upcoming Matches*](#heading)"
+    footer = "**[More Upcoming]" 
+
+    header_index = sidebar_contents.index(header) + len(header) + 4
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + gosu.get_matches() + sidebar_contents[footer_index:]
+
+    return new_sidebar
+
+def get_sidebar():
+    sub = r.subreddit(subname)
+    mod = sub.mod
+    settings = mod.settings()
+    sidebar_contents = settings['description']
+    
+    return sidebar_contents
+
+def push_sidebar(new_sidebar):
+    sub = r.subreddit(subname)
+    mod = sub.mod
+    settings = mod.settings()
 
     fullname = settings.pop('subreddit_id')
 
     remap = {'allow_top': 'default_set',
                  'lang': 'language',
                  'link_type': 'content_options'}
+
     for (new, old) in remap.items():
         settings[new] = settings.pop(old)
 
@@ -47,16 +66,22 @@ def update_streamers():
 
     sub._create_or_update(_reddit=sub._reddit, sr=fullname, **settings)
 
-def update_matches():
-    pass
+def do_update_sidebar(sidebar):
+    sidebar = update_streamers(sidebar)
+    sidebar = update_matches(sidebar)
+
+    return sidebar
 
 def update_sidebar():
     print time.ctime()
     print "UPDATING!"
 
-    update_streamers()
+    sidebar = get_sidebar()
+    sidebar = do_update_sidebar(sidebar)
+    push_sidebar(sidebar)
 
     threading.Timer(30, update_sidebar).start()
 
-login()
-update_sidebar()
+if __name__ == "__main__":
+    login()
+    update_sidebar()

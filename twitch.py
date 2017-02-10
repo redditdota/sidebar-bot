@@ -9,17 +9,25 @@ def get_top_channels():
     dota_channels = r.json()
     top_dota_channels = []
 
-    for stream in dota_channels['streams'][:5]:
+    counter = 0
+    for stream in dota_channels['streams']:
+        if counter >= 5:
+            break
+
         channel = stream["channel"]
+
+        if channel["language"].lower() != "en":
+            continue
 
         viewers = stream["viewers"]
         status = channel["status"]
-        lang = channel["language"]
         name = channel["display_name"]
         url = channel["url"]
 
-        sidebar_channels = {"name": name, "status": status, "viewers": viewers, "url": url, "lang": lang}
+        sidebar_channels = {"name": name, "status": status, "viewers": viewers, "url": url}
         top_dota_channels.append(sidebar_channels)
+
+        counter += 1
 
     updated_matches = ""
 
