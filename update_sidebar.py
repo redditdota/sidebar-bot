@@ -1,4 +1,5 @@
 import re
+import time, threading
 
 import praw
 
@@ -9,13 +10,13 @@ r = None
 def login():
     global r
 
-    r = praw.Reddit(client_id='',
-                         client_secret='',
-                         password='!',
+    r = praw.Reddit(client_id='hnexQa51gEfhzg',
+                         client_secret='wE5-dMBrclX0N99i7ANY35sqUYM',
+                         password='',
                          user_agent='Dota 2 sidebar bot',
-                         username='VRCkid')
+                         username='VRCbot')
 def update_streamers():
-    sub = r.subreddit("dota2")
+    sub = r.subreddit("dota2test")
     mod = sub.mod
     settings = mod.settings()
     sidebar_contents = settings['description']
@@ -46,11 +47,16 @@ def update_streamers():
 
     sub._create_or_update(_reddit=sub._reddit, sr=fullname, **settings)
 
-    #r.update_settings(r.get_subreddit(sub), description=sidebar_contents)
-
-
 def update_matches():
     pass
 
+def update_sidebar():
+    print time.ctime()
+    print "UPDATING!"
+
+    update_streamers()
+
+    threading.Timer(30, update_sidebar).start()
+
 login()
-update_streamers()
+update_sidebar()
