@@ -1,16 +1,9 @@
-import urllib2
-from bs4 import BeautifulSoup
-
 import datetime
 import dateutil.parser
 import requests
+import os
 
-tables = None
-
-count = 0
-sidebar_matches = []
-
-apiKey = ""
+apiKey = os.environ["GOSU_API_KEY"]
 
 def get_gosu_matches():
     url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=5"
@@ -21,6 +14,7 @@ def get_gosu_matches():
 
     matches = r.json()["matches"][:5]
 
+    sidebar_matches = []
     for match in matches:
 
         isLive = match["isLive"]
@@ -50,7 +44,8 @@ def get_gosu_matches():
 
         sidebar_matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2":
             re2.lower(), "tournament": tournament, "time": time, "link": matchUrl})
-
+        
+    return sidebar_matches
 
 #def fetch_match_tables():
 #    global tables
@@ -112,7 +107,7 @@ def get_gosu_matches():
 #        matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2": re2.lower(), "time": time, "link": link})
 #        count += 1
 
-def format_matches():
+def format_matches(sidebar_matches):
     formatted_matches = []
 
     for match in sidebar_matches:
@@ -132,6 +127,6 @@ def format_matches():
 
 
 def get_matches():
-    get_gosu_matches()
+    matches = get_gosu_matches()
 
-    return format_matches()
+    return format_matches(matches)
