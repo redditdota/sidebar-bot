@@ -1,3 +1,4 @@
+import os
 import re
 import time, threading
 
@@ -12,11 +13,11 @@ subname = "dota2test"
 def login():
     global r
 
-    r = praw.Reddit(client_id='bjOTTvmLehHqwQ',
-                         client_secret='g4IK796qD4nuHDTEL7Clzws2XEo',
-                         password='!',
+    r = praw.Reddit(client_id=os.environ["CLIENT_ID"],
+                         client_secret=os.environ["CLIENT_SECRET"],
+                         password=os.environ["BOT_PASSWORD"],
                          user_agent='Dota 2 sidebar bot',
-                         username='VRCkid')
+                         username=os.environ["BOT_USERNAME"])
 
 def update_streamers(sidebar_contents):
     header = "[*Livestreams*](#heading)"
