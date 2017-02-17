@@ -3,3 +3,4 @@ prawcore==0.7.0
 requests==2.13.0
 lxml==3.7.2
 beautifulsoup4==4.5.3
+python-dateutil==2.6.0
