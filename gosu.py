@@ -37,7 +37,7 @@ def get_gosu_matches():
             delta = gamedate - nowdate
             days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
 
-            if days == "0":
+            if str(days) != "0":
                 time = str(days) + "d " + str(hours) + "h"
             else:
                 time = str(hours) + "h " + str(mins) + "m"

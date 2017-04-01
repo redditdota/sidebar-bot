@@ -1,5 +1,18 @@
 import requests
 
+def is_ascii(text):
+    if isinstance(text, unicode):
+        try:
+            text.encode('ascii')
+        except UnicodeEncodeError:
+            return False
+    else:
+        try:
+            text.decode('ascii')
+        except UnicodeDecodeError:
+            return False
+    return True
+
 def get_top_channels():
     url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
     headers = {'Client-ID': 'f4nae99irirbffejowopfuulu9o4kw'}
@@ -17,6 +30,10 @@ def get_top_channels():
         channel = stream["channel"]
 
         if channel["language"].lower() != "en":
+            continue
+        if channel["display_name"].lower() == "dota2ruhub":
+            continue
+        if not is_ascii(channel["display_name"]):
             continue
 
         viewers = stream["viewers"]
