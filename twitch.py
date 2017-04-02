@@ -29,9 +29,7 @@ def get_top_channels():
 
         channel = stream["channel"]
 
-        if channel["language"].lower() != "en":
-            continue
-        if channel["display_name"].lower() == "dota2ruhub":
+        if "dota2ruhub" in channel["display_name"].lower():
             continue
         if not is_ascii(channel["display_name"]):
             continue
