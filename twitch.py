@@ -31,7 +31,7 @@ def get_top_channels():
 
         if "dota2ruhub" in channel["display_name"].lower():
             continue
-        if not is_ascii(channel["display_name"]):
+        if channel["broadcaster_language"] != "en":
             continue
 
         viewers = stream["viewers"]
