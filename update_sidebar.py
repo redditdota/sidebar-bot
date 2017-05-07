@@ -4,11 +4,12 @@ import time, threading
 
 import praw
 
+import prize_pool
 import twitch
 import gosu
 
 r = None
-subname = "dota2"
+subname = "dota2test"
 
 def login():
     global r
@@ -18,6 +19,17 @@ def login():
                          password=os.environ["BOT_PASSWORD"],
                          user_agent='Dota 2 sidebar bot',
                          username=os.environ["BOT_USERNAME"])
+
+def update_prize_pool(sidebar_contents):
+    header = "######"
+    footer = "(#side)"
+
+    header_index = sidebar_contents.index(header) + len(header)
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + prize_pool.get_prize_pool() + sidebar_contents[footer_index:]
+
+    return new_sidebar
 
 def update_streamers(sidebar_contents):
     header = "[*Livestreams*](#heading)"
@@ -40,6 +52,7 @@ def update_matches(sidebar_contents):
     new_sidebar = sidebar_contents[:header_index] + gosu.get_matches() + sidebar_contents[footer_index:]
 
     return new_sidebar
+
 
 def get_sidebar():
     sub = r.subreddit(subname)
@@ -68,6 +81,7 @@ def push_sidebar(new_sidebar):
     sub._create_or_update(_reddit=sub._reddit, sr=fullname, **settings)
 
 def do_update_sidebar(sidebar):
+    sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     sidebar = update_matches(sidebar)
 
