@@ -9,7 +9,7 @@ import twitch
 import gosu
 
 r = None
-subname = "dota2test"
+subname = "dota2"
 
 def login():
     global r

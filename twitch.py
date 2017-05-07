@@ -1,4 +1,7 @@
 import requests
+import os
+
+clientID = os.environ["TWITCH_CLIENT_ID"]
 
 def is_ascii(text):
     if isinstance(text, unicode):
@@ -15,7 +18,7 @@ def is_ascii(text):
 
 def get_top_channels():
     url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
-    headers = {'Client-ID': 'f4nae99irirbffejowopfuulu9o4kw'}
+    headers = {'Client-ID': clientID}
 
     r = requests.get(url, headers=headers)
 
