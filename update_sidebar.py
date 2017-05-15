@@ -80,6 +80,28 @@ def push_sidebar(new_sidebar):
 
     sub._create_or_update(_reddit=sub._reddit, sr=fullname, **settings)
 
+def update_flairs():
+    for message in r.inbox.unread():
+        if "change my flair text" in message.subject.lower():
+            if len(message.body) <= 64:
+                cssclass = r.subreddit(subname).flair(redditor=message.author).next()['flair_css_class']
+                r.subreddit(subname).flair.set(message.author, message.body, cssclass)
+
+                message.reply("""I've changed your flair text to **""" + message.body + """**! Send me a
+                        new message if you want it changed again.""")
+                message.mark_read()
+            else:
+                message.reply("""I wasn't able to change your flair text because what you sent me
+                        was longer than 64 characters. If you still want something changed, send me
+                        **new** message (don't reply to this one) with something shorter!""")
+                message.mark_read()
+        else:
+            if "username mention" not in message.subject:
+                message.reply("""I didn't recognize the subject of your message. If you were wanting
+                to change your flair text please send a message with the subject **Change My Flair Text**
+                . Thanks!""")
+            message.mark_read()
+
 def do_update_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
@@ -94,6 +116,8 @@ def update_sidebar():
     sidebar = get_sidebar()
     sidebar = do_update_sidebar(sidebar)
     push_sidebar(sidebar)
+
+    update_flairs()
 
     threading.Timer(30, update_sidebar).start()
 
