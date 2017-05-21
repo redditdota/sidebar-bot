@@ -7,6 +7,7 @@ import praw
 import prize_pool
 import twitch
 import gosu
+import events
 
 r = None
 subname = "dota2"
@@ -50,6 +51,17 @@ def update_matches(sidebar_contents):
     footer_index = sidebar_contents.index(footer)
 
     new_sidebar = sidebar_contents[:header_index] + gosu.get_matches() + sidebar_contents[footer_index:]
+
+    return new_sidebar
+
+def update_events(sidebar_contents):
+    header = "[*Upcoming Events*](#heading)"
+    footer = "**[More Events]" 
+
+    header_index = sidebar_contents.index(header) + len(header) + 4
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + events.get_upcoming_events() + sidebar_contents[footer_index:]
 
     return new_sidebar
 
@@ -106,6 +118,7 @@ def do_update_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     sidebar = update_matches(sidebar)
+    sidebar = update_events(sidebar)
 
     return sidebar
 
