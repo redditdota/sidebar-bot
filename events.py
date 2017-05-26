@@ -25,15 +25,17 @@ def get_upcoming_events():
         name = event["summary"]
         url = event["description"]
         startDate = datetime.datetime.strptime(event["start"]["date"], '%Y-%m-%d')
+        endDate = datetime.datetime.strptime(event["end"]["date"], '%Y-%m-%d')
         start = calendar.month_abbr[int(startDate.month)] + " " + str(int(startDate.day))
+        end = calendar.month_abbr[int(endDate.month)] + " " + str(int(endDate.day))
 
-        sidebar_events.append({"name": name, "start": start, "url": url})
+        sidebar_events.append({"name": name, "start": start, "end": end, "url": url})
 
     upcoming_events = ""
     upcoming_events += ". | .\n"
     upcoming_events += "---|---\n"
     for event in sidebar_events:
-        upcoming_events += event["start"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
+        upcoming_events += event["start"] + " - " + event["end"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
 
     
     return upcoming_events
