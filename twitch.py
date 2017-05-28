@@ -1,4 +1,5 @@
 import requests
+import re
 import os
 
 clientID = os.environ["TWITCH_CLIENT_ID"]
@@ -19,6 +20,7 @@ def is_ascii(text):
 def get_top_channels():
     url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
     headers = {'Client-ID': clientID}
+    title_repace_regex = re.compile(r"[\a\e\n\r\s\v]+")
 
     r = requests.get(url, headers=headers)
 
@@ -38,7 +40,7 @@ def get_top_channels():
             continue
 
         viewers = stream["viewers"]
-        status = channel["status"]
+        status = title_repace_regex.sub(" ", channel["status"].replace("`","'"))
         name = channel["display_name"]
         url = channel["url"]
 
@@ -50,7 +52,7 @@ def get_top_channels():
     updated_matches = ""
 
     for channel in top_dota_channels:
-        updated_matches += ">>>#[" + channel["status"] + "](" + channel["url"] + ")\n"
+        updated_matches += ">>>#[`" + channel["status"] + "`](" + channel["url"] + ")\n"
         updated_matches += ">##" + "\n"
         updated_matches += ">###" + str(channel["viewers"]) + " @ " + channel["name"] + "\n"
         updated_matches += "\n" + ">>[](#separator)" + "\n\n"
