@@ -1,5 +1,5 @@
 import calendar
-import datetime
+from datetime import datetime, timedelta
 import json
 import os
 
@@ -14,7 +14,7 @@ def get_upcoming_events():
     service = build(serviceName='calendar', version='v3', 
         developerKey=key)
 
-    now = datetime.datetime.utcnow().isoformat() + 'Z'
+    now = datetime.utcnow().isoformat() + 'Z'
     cal = service.events().list(calendarId=email, timeMin=now, maxResults=5, \
              singleEvents=True, orderBy='startTime').execute()
 
@@ -24,8 +24,9 @@ def get_upcoming_events():
     for event in events:
         name = event["summary"]
         url = event["description"]
-        startDate = datetime.datetime.strptime(event["start"]["date"], '%Y-%m-%d')
-        endDate = datetime.datetime.strptime(event["end"]["date"], '%Y-%m-%d')
+        startDate = datetime.strptime(event["start"]["date"], '%Y-%m-%d')
+        endDate = datetime.strptime(event["end"]["date"], '%Y-%m-%d')
+        endDate = endDate - timedelta(days=1)
         start = calendar.month_abbr[int(startDate.month)] + " " + str(int(startDate.day))
         end = calendar.month_abbr[int(endDate.month)] + " " + str(int(endDate.day))
 
@@ -39,15 +40,3 @@ def get_upcoming_events():
 
     
     return upcoming_events
-
-#[*Upcoming Events*](#heading)
-#
-#. | .
-#---|---
-#May 26 | [The Manila Masters](https://www.google.com)
-#May 30 | [ZOTAC Cup Masters](https://www.google.com)
-#June 4 | [EPICENTER 2017](https://www.google.com)
-#June 14 | [DOTA Summit 7](https://www.google.com)
-#June 26 | [The International 2017 Qualifiers](https://www.google.com)
-#
-#**[More Events](http://www.gosugamers.net/dota2/gosubet#button#slim)**
