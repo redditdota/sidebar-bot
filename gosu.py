@@ -39,8 +39,10 @@ def get_gosu_matches():
 
             if str(days) != "0":
                 time = str(days) + "d " + str(hours) + "h"
-            else:
+            elif str(hours) != "0":
                 time = str(hours) + "h " + str(mins) + "m"
+            else:
+                time = str(mins) + "m"
 
         sidebar_matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2":
             re2.lower(), "tournament": tournament, "time": time, "link": matchUrl})
