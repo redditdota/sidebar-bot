@@ -115,7 +115,7 @@ def update_flairs():
             message.mark_read()
 
 def do_update_sidebar(sidebar):
-    sidebar = update_prize_pool(sidebar)
+    #sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
