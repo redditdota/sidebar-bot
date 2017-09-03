@@ -3,6 +3,8 @@ import os
 
 clientID = os.environ["TWITCH_CLIENT_ID"]
 
+whitelist = ["nooneboss"]
+
 def is_ascii(text):
     if isinstance(text, unicode):
         try:
@@ -32,9 +34,11 @@ def get_top_channels():
 
         channel = stream["channel"]
 
+	if channel["display_name"] in whitelist:
+	    pass
         if "dota2ruhub" in channel["display_name"].lower():
             continue
-        if channel["broadcaster_language"] != "en":
+        elif channel["broadcaster_language"] != "en":
             continue
 
         viewers = stream["viewers"]
