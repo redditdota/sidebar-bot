@@ -5,6 +5,7 @@ clientID = os.environ["TWITCH_CLIENT_ID"]
 
 whitelist = ["nooneboss"]
 
+
 def is_ascii(text):
     if isinstance(text, unicode):
         try:
@@ -17,6 +18,7 @@ def is_ascii(text):
         except UnicodeDecodeError:
             return False
     return True
+
 
 def get_top_channels():
     url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
@@ -34,9 +36,9 @@ def get_top_channels():
 
         channel = stream["channel"]
 
-	if channel["display_name"] in whitelist:
-	    pass
-        if "dota2ruhub" in channel["display_name"].lower():
+        if channel["display_name"] in whitelist:
+            pass
+        elif "dota2ruhub" in channel["display_name"].lower():
             continue
         elif channel["broadcaster_language"] != "en":
             continue
@@ -46,7 +48,8 @@ def get_top_channels():
         name = channel["display_name"]
         url = channel["url"]
 
-        sidebar_channels = {"name": name, "status": status, "viewers": viewers, "url": url}
+        sidebar_channels = {"name": name, "status": status,
+                            "viewers": viewers, "url": url}
         top_dota_channels.append(sidebar_channels)
 
         counter += 1
@@ -54,9 +57,11 @@ def get_top_channels():
     updated_matches = ""
 
     for channel in top_dota_channels:
-        updated_matches += ">>>#[" + channel["status"] + "](" + channel["url"] + ")\n"
+        updated_matches += ">>>#[" + channel["status"] + \
+            "](" + channel["url"] + ")\n"
         updated_matches += ">##" + "\n"
-        updated_matches += ">###" + str(channel["viewers"]) + " @ " + channel["name"] + "\n"
+        updated_matches += ">###" + \
+            str(channel["viewers"]) + " @ " + channel["name"] + "\n"
         updated_matches += "\n" + ">>[](#separator)" + "\n\n"
 
     return updated_matches
