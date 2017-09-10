@@ -14,7 +14,7 @@ import events
 import stupidquestions
 
 r = None
-subname = "dota2test"
+subname = "dota2"
 
 config = None
 
