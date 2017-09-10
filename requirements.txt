@@ -1,7 +1,9 @@
-praw==4.3.0
+praw==5.1.0
 prawcore==0.7.0
 requests==2.13.0
 lxml==3.7.2
 beautifulsoup4==4.5.3
 python-dateutil==2.6.0
 google-api-python-client==1.6.2
+schedule==0.4.3
+heroku3==3.3.0

@@ -1,25 +1,37 @@
 import os
 import re
 import time, threading
+import datetime
 
 import praw
+import schedule
+import heroku3
 
 import prize_pool
 import twitch
 import gosu
 import events
+import stupidquestions
 
 r = None
-subname = "dota2"
+subname = "dota2test"
+
+config = None
 
 def login():
     global r
+    global config
 
     r = praw.Reddit(client_id=os.environ["CLIENT_ID"],
                          client_secret=os.environ["CLIENT_SECRET"],
                          password=os.environ["BOT_PASSWORD"],
                          user_agent='Dota 2 sidebar bot',
                          username=os.environ["BOT_USERNAME"])
+
+    heroku_conn = heroku3.from_key(os.environ["HEROKU_API_KEY"])
+    app = heroku_conn.apps()['dota2sidebar']
+    config = app.config()
+
 
 def update_prize_pool(sidebar_contents):
     header = "######"
@@ -132,8 +144,22 @@ def update_sidebar():
 
     update_flairs()
 
-    threading.Timer(30, update_sidebar).start()
+    #threading.Timer(30, update_sidebar).start()
+
+def create_stupid_questions_thread():
+    stupidquestions.createPost(r, subname, config["STUPID_QUESTIONS_ID"])
+    config["STUPID_QUESTIONS_ID"] = str(int(config["STUPID_QUESTIONS_ID"]) + 1)
+
+def cleanup_stupid_questions_thread():
+    stupidquestions.unstickyPost(r)
 
 if __name__ == "__main__":
     login()
-    update_sidebar()
+
+    schedule.every(30).seconds.do(update_sidebar)
+    schedule.every().monday.at("0:00").do(create_stupid_questions_thread)
+    schedule.every().monday.at("23:59").do(cleanup_stupid_questions_thread)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
