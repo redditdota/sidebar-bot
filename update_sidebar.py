@@ -157,8 +157,8 @@ if __name__ == "__main__":
     login()
 
     schedule.every(30).seconds.do(update_sidebar)
-    schedule.every().monday.at("0:00").do(create_stupid_questions_thread)
-    schedule.every().monday.at("23:59").do(cleanup_stupid_questions_thread)
+    schedule.every().monday.at("16:00").do(create_stupid_questions_thread)
+    schedule.every().tuesday.at("16:00").do(cleanup_stupid_questions_thread)
 
     while True:
         schedule.run_pending()
