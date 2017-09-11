@@ -142,7 +142,7 @@ def update_sidebar():
     sidebar = do_update_sidebar(sidebar)
     push_sidebar(sidebar)
 
-    update_flairs()
+    #update_flairs()
 
     #threading.Timer(30, update_sidebar).start()
 
