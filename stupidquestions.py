@@ -20,11 +20,11 @@ Other resources:
 
 def createPost(r, subname, num):
     threadnum = ""
-    if(num[-1] == 1):
+    if(num[-1] == "1"):
         threadnum = num + "st"
-    elif(num[-1] == 2):
+    elif(num[-1] == "2"):
         threadnum = num + "nd"
-    elif(num[-1] == 3):
+    elif(num[-1] == "3"):
         threadnum = num + "rd"
     else:
         threadnum = num + "th"
