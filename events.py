@@ -24,8 +24,11 @@ def get_upcoming_events():
 
     for event in events:
         name = event["summary"]
-        url = event["description"].split()[-1]
-        print(event["description"].split())
+        
+        desc = event["description"].split()
+        url = ""
+        if desc:
+            url = desc[-1]
 
         startDate = datetime.strptime(event["start"]["date"], '%Y-%m-%d')
         endDate = datetime.strptime(event["end"]["date"], '%Y-%m-%d')
