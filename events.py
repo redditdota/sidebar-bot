@@ -9,13 +9,14 @@ from oauth2client.client import OAuth2WebServerFlow
 
 key = os.environ["GOOGLE_KEY"]
 email = os.environ["EMAIL"]
+calendar_id = os.environ["CALENDAR_ID"]
 
 def get_upcoming_events():
     service = build(serviceName='calendar', version='v3', 
         developerKey=key)
 
     now = datetime.utcnow().isoformat() + 'Z'
-    cal = service.events().list(calendarId=email, timeMin=now, maxResults=5, \
+    cal = service.events().list(calendarId=calendar_id, timeMin=now, maxResults=5, \
              singleEvents=True, orderBy='startTime').execute()
 
     events = cal["items"]
@@ -23,7 +24,9 @@ def get_upcoming_events():
 
     for event in events:
         name = event["summary"]
-        url = event["description"]
+        url = event["description"].split()[-1]
+        print(event["description"].split())
+
         startDate = datetime.strptime(event["start"]["date"], '%Y-%m-%d')
         endDate = datetime.strptime(event["end"]["date"], '%Y-%m-%d')
         endDate = endDate - timedelta(days=1)
