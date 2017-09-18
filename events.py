@@ -34,7 +34,7 @@ def get_upcoming_events():
         endDate = datetime.strptime(event["end"]["date"], '%Y-%m-%d')
         endDate = endDate - timedelta(days=1)
         start = calendar.month_abbr[int(startDate.month)] + " " + str(int(startDate.day))
-        if datetime.now() > startDate.date():
+        if datetime.now() > startDate:
             start = "**Now!**"
         end = calendar.month_abbr[int(endDate.month)] + " " + str(int(endDate.day))
 
