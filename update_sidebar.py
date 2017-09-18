@@ -157,7 +157,7 @@ if __name__ == "__main__":
     login()
 
     schedule.every(30).seconds.do(update_sidebar)
-    schedule.every().monday.at("16:00").do(create_stupid_questions_thread)
+    schedule.every().saturday.at("16:00").do(create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(cleanup_stupid_questions_thread)
 
     while True:
