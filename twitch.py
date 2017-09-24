@@ -48,6 +48,9 @@ def get_top_channels():
         name = channel["display_name"]
         url = channel["url"]
 
+        if '`' in status:
+            status = status.replace("`", "\`")
+
         sidebar_channels = {"name": name, "status": status,
                             "viewers": viewers, "url": url}
         top_dota_channels.append(sidebar_channels)
