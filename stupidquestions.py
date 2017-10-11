@@ -33,6 +33,7 @@ def createPost(r, subname, num):
     submission = r.subreddit(subname).submit(title, selftext=postbody)
     submission.disable_inbox_replies()
     submission.mod.flair(text="Questions")
+    submission.mod.suggested_sort('new')
     submission.mod.sticky()
 
 def unstickyPost(r):
