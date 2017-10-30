@@ -32,7 +32,7 @@ def createPost(r, subname, num):
     title = "The " + threadnum + " " + posttitle
     submission = r.subreddit(subname).submit(title, selftext=postbody)
     submission.disable_inbox_replies()
-    submission.mod.flair(text="Questions")
+    submission.mod.flair(text="Question")
     submission.mod.suggested_sort('new')
     submission.mod.sticky()
 
