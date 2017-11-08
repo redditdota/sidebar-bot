@@ -47,9 +47,17 @@ def get_top_channels():
         status = channel["status"]
         name = channel["display_name"]
         url = channel["url"]
-
+        
         if '`' in status:
             status = status.replace("`", "\`")
+        if '[' in status:
+            status = status.replace("[", "\[")
+        if ']' in status:
+            status = status.replace("]", "\]")
+        if '\r' in status:
+            status = status.replace("\r", '')
+        if '\n' in status:
+            status = status.replace("\n", '')
 
         sidebar_channels = {"name": name, "status": status,
                             "viewers": viewers, "url": url}
