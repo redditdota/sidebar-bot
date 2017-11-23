@@ -5,7 +5,6 @@ clientID = os.environ["TWITCH_CLIENT_ID"]
 
 whitelist = ["nooneboss"]
 
-
 def is_ascii(text):
     if isinstance(text, unicode):
         try:
