@@ -173,6 +173,6 @@ def format_matches(sidebar_matches):
 
 
 def get_matches():
-    matches = get_jd_matches()
+    matches = get_gosu_matches()
 
     return format_matches(matches)
