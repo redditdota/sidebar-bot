@@ -135,8 +135,8 @@ def do_update_sidebar(sidebar):
     return sidebar
 
 def update_sidebar():
-    print time.ctime()
-    print "UPDATING!"
+    print(time.ctime())
+    print("UPDATING!")
 
     sidebar = get_sidebar()
     sidebar = do_update_sidebar(sidebar)
