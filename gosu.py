@@ -51,11 +51,13 @@ def get_gosu_matches():
 
 def get_jd_matches():
     url = "https://secure.gamesports.net/api/?action=reddit_dota2_matches_upcoming"
-    headers = {'user-agent': '/r/dota2-sidebar-match-ticker'}
+    headers = {'user-agent': 'dota2-sidebar-match-ticker'}
 
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
 
+    print("about to request")
     r = requests.get(url, headers=headers)
+    print("requested")
 
     matches = r.json()
 
@@ -175,7 +177,8 @@ def format_matches(sidebar_matches):
 
 
 def get_matches():
-    # matches = get_gosu_matches()
-    matches = get_jd_matches()
+    matches = get_gosu_matches()
+    # matches = get_jd_matches()
+    # print(matches)
 
     return format_matches(matches)
