@@ -1,1 +1,1 @@
-worker: python update_sidebar.py
+worker: python3 update_sidebar.py
