@@ -23,8 +23,8 @@ def get_upcoming_events():
     sidebar_events = []
 
     for event in events:
+        print(event) 
         name = event["summary"]
-        
         desc = event["description"].split()
         url = ""
         if desc:
