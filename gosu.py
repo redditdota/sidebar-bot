@@ -60,9 +60,7 @@ def get_jd_matches():
 
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
 
-    print("about to request")
     r = requests.get(url, headers=headers, proxies=proxyDict)
-    print("requested")
 
     matches = r.json()
 
@@ -75,8 +73,14 @@ def get_jd_matches():
         team1 = match["team_1_short"]
         re1 = match["team_1_country"]
 
+        if re1 == "cis":
+            re1 = "xb"
+
         team2 = match["team_2_short"]
         re2 = match["team_2_country"]
+
+        if re2 == "cis":
+            re2 = "xb"
 
         tournament = match["coverage_title"]
         tournament_url = match["coverage_url"]
@@ -182,8 +186,8 @@ def format_matches(sidebar_matches):
 
 
 def get_matches():
-    # matches = get_gosu_matches()
-    matches = get_jd_matches()
+    matches = get_gosu_matches()
+    # matches = get_jd_matches()
     # print(matches)
 
     return format_matches(matches)
