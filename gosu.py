@@ -5,6 +5,11 @@ import os
 
 apiKey = os.environ["GOSU_API_KEY"]
 
+proxyDict = {
+              "http"  : os.environ.get('FIXIE_URL', ''),
+              "https" : os.environ.get('FIXIE_URL', '')
+            }
+
 def get_gosu_matches():
     url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=5"
 
@@ -56,7 +61,7 @@ def get_jd_matches():
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
 
     print("about to request")
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, proxies=proxyDict)
     print("requested")
 
     matches = r.json()
@@ -73,7 +78,7 @@ def get_jd_matches():
         team2 = match["team_2_short"]
         re2 = match["team_2_country"]
 
-        tournament = match["coverage_title_short"]
+        tournament = match["coverage_title"]
         tournament_url = match["coverage_url"]
 
         time = None
@@ -177,8 +182,8 @@ def format_matches(sidebar_matches):
 
 
 def get_matches():
-    matches = get_gosu_matches()
-    # matches = get_jd_matches()
+    # matches = get_gosu_matches()
+    matches = get_jd_matches()
     # print(matches)
 
     return format_matches(matches)
