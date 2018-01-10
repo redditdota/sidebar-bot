@@ -13,6 +13,10 @@ config.read("config.txt")
 subname = "dota2"
 r = None
 
+modAuthors = ['m4rx', 'klopjobacid', 'Decency', '0Hellspawn0', 
+                'crimson589', 'Intolerable', 'lestye', 'coronaria', 
+                'leafeator', 'VRCkid', 'JohnScofield', 'Pohka']
+
 alreadySeen = []
 
 r = praw.Reddit(client_id=config.get("config", "CLIENT_ID"),
@@ -47,11 +51,15 @@ def getModmail():
             last = m[-1]
             prevReply = m[-2]
 
+            if last.author.name in modAuthors:
+                continue
+
             if last.id not in alreadySeen:
                 alreadySeen.append(last.id)
 
                 modmails.append({"kind": "inprogress", "title": c.subject, "author": last.author.name, "body": last.body_markdown, "prevAuthor": prevReply.author.name, "prevBody": prevReply.body_markdown, "url": "https://mod.reddit.com/mail/inprogress/" + c.id})
-    
+
+    print(modmails)
     return modmails
 
 client = discord.Client()
@@ -65,6 +73,7 @@ def on_ready():
     print('------')
 
     while True:
+        print("Checking modmail")
         modmails = getModmail()
 
         for modmail in modmails:
@@ -83,6 +92,6 @@ def on_ready():
 
             yield from client.send_message(client.get_channel("140254555580530688"), embed=embed)
 
-    time.sleep(30)
+        time.sleep(20)
 
 client.run(config.get("config", "DISCORD_TOKEN"))
