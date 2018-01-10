@@ -3,12 +3,12 @@ import dateutil.parser
 import requests
 import os
 
-apiKey = os.environ["GOSU_API_KEY"]
+import configparser
 
-proxyDict = {
-              "http"  : os.environ.get('FIXIE_URL', ''),
-              "https" : os.environ.get('FIXIE_URL', '')
-            }
+config = configparser.ConfigParser()
+config.read("config.txt")
+
+apiKey = config.get("config", "GOSU_API_KEY")
 
 def get_gosu_matches():
     url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=5"
@@ -60,7 +60,7 @@ def get_jd_matches():
 
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
 
-    r = requests.get(url, headers=headers, proxies=proxyDict)
+    r = requests.get(url, headers=headers)
 
     matches = r.json()
 
@@ -186,8 +186,7 @@ def format_matches(sidebar_matches):
 
 
 def get_matches():
-    matches = get_gosu_matches()
-    # matches = get_jd_matches()
-    # print(matches)
+    #matches = get_gosu_matches()
+    matches = get_jd_matches()
 
     return format_matches(matches)

@@ -13,24 +13,27 @@ import gosu
 import events
 import stupidquestions
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+
 r = None
 subname = "dota2"
-
-config = None
 
 def login():
     global r
     global config
 
-    r = praw.Reddit(client_id=os.environ["CLIENT_ID"],
-                         client_secret=os.environ["CLIENT_SECRET"],
-                         password=os.environ["BOT_PASSWORD"],
+    r = praw.Reddit(client_id=config.get("config", "CLIENT_ID"),
+                         client_secret=config.get("config", "CLIENT_SECRET"),
+                         password=config.get("config", "BOT_PASSWORD"),
                          user_agent='Dota 2 sidebar bot',
-                         username=os.environ["BOT_USERNAME"])
+                         username=config.get("config", "BOT_USERNAME"))
 
-    heroku_conn = heroku3.from_key(os.environ["HEROKU_API_KEY"])
-    app = heroku_conn.apps()['dota2sidebar']
-    config = app.config()
+    #heroku_conn = heroku3.from_key(config.get("config", "HEROKU_API_KEY"))
+    #app = heroku_conn.apps()['dota2sidebar']
+    #config = app.config()
 
 
 def update_prize_pool(sidebar_contents):
@@ -45,7 +48,7 @@ def update_prize_pool(sidebar_contents):
     return new_sidebar
 
 def update_streamers(sidebar_contents):
-    header = "[*Livestreams*](#heading)"
+    header = "[*Livestreams*](#livestreamheading)"
     footer = "**[More Live Streams]" 
 
     header_index = sidebar_contents.index(header) + len(header) + 4
@@ -56,7 +59,7 @@ def update_streamers(sidebar_contents):
     return new_sidebar
 
 def update_matches(sidebar_contents):
-    header = "[*Upcoming Matches*](#heading)"
+    header = "[*Upcoming Matches*](#upcomingheading)"
     footer = "**[More Upcoming]" 
 
     header_index = sidebar_contents.index(header) + len(header) + 4
@@ -67,7 +70,7 @@ def update_matches(sidebar_contents):
     return new_sidebar
 
 def update_events(sidebar_contents):
-    header = "[*Upcoming Events*](#heading)"
+    header = "[*Upcoming Events*](#upcomingeventsheading)"
     footer = "**[More Events]" 
 
     header_index = sidebar_contents.index(header) + len(header) + 4
@@ -147,8 +150,11 @@ def update_sidebar():
     #threading.Timer(30, update_sidebar).start()
 
 def create_stupid_questions_thread():
-    stupidquestions.createPost(r, subname, config["STUPID_QUESTIONS_ID"])
-    config["STUPID_QUESTIONS_ID"] = str(int(config["STUPID_QUESTIONS_ID"]) + 1)
+    stupidquestions.createPost(r, subname, config.get("config", "STUPID_QUESTIONS_ID"))
+    config.set("config", "STUPID_QUESTIONS_ID", str(int(config.get("config", "STUPID_QUESTIONS_ID")) + 1))
+
+    with open("config.txt", 'wb') as configfile:
+        config.write(configfile)
 
 def cleanup_stupid_questions_thread():
     stupidquestions.unstickyPost(r)

@@ -1,7 +1,12 @@
 import requests
 import os
 
-clientID = os.environ["TWITCH_CLIENT_ID"]
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+
+clientID = config.get("config", "TWITCH_CLIENT_ID")
 
 whitelist = ["nooneboss"]
 

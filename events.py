@@ -3,13 +3,18 @@ from datetime import datetime, timedelta
 import json
 import os
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+
 from apiclient.discovery import build
 from oauth2client.file import Storage
 from oauth2client.client import OAuth2WebServerFlow
 
-key = os.environ["GOOGLE_KEY"]
-email = os.environ["EMAIL"]
-calendar_id = os.environ["CALENDAR_ID"]
+key = config.get("config", "GOOGLE_KEY")
+email = config.get("config", "EMAIL")
+calendar_id = config.get("config", "CALENDAR_ID")
 
 def get_upcoming_events():
     service = build(serviceName='calendar', version='v3', 
