@@ -36,10 +36,14 @@ def getModmail():
             m = list(c.messages)
             last = m[-1]
 
+            body = last.body_markdown
+            if len(body) > 1024:
+                body = body[:1021] + "..."
+
             if last.id not in alreadySeen:
                 alreadySeen.append(last.id)
                 
-                modmails.append({"kind": "new", "title": c.subject, "author": last.author.name, "body": last.body_markdown, "url": "https://mod.reddit.com/mail/new/" + c.id})
+                modmails.append({"kind": "new", "title": c.subject, "author": last.author.name, "body": body, "url": "https://mod.reddit.com/mail/new/" + c.id})
 
 
     for c in inprogress:
@@ -57,7 +61,15 @@ def getModmail():
             if last.id not in alreadySeen:
                 alreadySeen.append(last.id)
 
-                modmails.append({"kind": "inprogress", "title": c.subject, "author": last.author.name, "body": last.body_markdown, "prevAuthor": prevReply.author.name, "prevBody": prevReply.body_markdown, "url": "https://mod.reddit.com/mail/inprogress/" + c.id})
+                body = last.body_markdown
+                if len(body) > 1024:
+                    body = body[:1021] + "..."
+
+                prevBody = prevReply.body_markdown
+                if len(prevBody) > 1024:
+                    prevBody = prevBody[:1021] + "..."
+
+                modmails.append({"kind": "inprogress", "title": c.subject, "author": last.author.name, "body": body, "prevAuthor": prevReply.author.name, "prevBody": prevBody, "url": "https://mod.reddit.com/mail/inprogress/" + c.id})
 
     print(modmails)
     return modmails
@@ -71,6 +83,9 @@ def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+
+    # server = client.get_server("74287487459004416")
+    # me = server.get_member_named("Vatyx")
 
     while True:
         print("Checking modmail")
@@ -91,6 +106,7 @@ def on_ready():
                 embed.add_field(name = "New Reply", value=modmail["body"], inline=False)
 
             yield from client.send_message(client.get_channel("140254555580530688"), embed=embed)
+            # yield from client.send_message(me, embed=embed)
 
         time.sleep(20)
 
