@@ -101,7 +101,7 @@ def get_jd_matches():
             else:
                 time = str(mins) + "m"
 
-        sidebar_matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2":
+        sidebar_matches.append({"team1": str(team1), "team2": str(team2), "region1": re1.lower(), "region2":
             re2.lower(), "tournament": tournament, "time": time, "link": matchUrl, "tournament_url": tournament_url})
 
     return sidebar_matches
@@ -170,8 +170,8 @@ def format_matches(sidebar_matches):
     formatted_matches = []
 
     for match in sidebar_matches:
-        sidebarmatch = ""
-        
+        sidebarmatch = "";
+
         sidebarmatch += ">>>[~~" + match["tournament"] + "~~\n"
         sidebarmatch += "~~" + match["time"] + "~~\n"
         sidebarmatch += "~~" + match["team1"] + "~~\n"
