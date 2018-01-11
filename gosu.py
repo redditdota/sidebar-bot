@@ -75,12 +75,20 @@ def get_jd_matches():
 
         if re1 == "cis":
             re1 = "xb"
+        if re1 == "world":
+            re1 = "wo"
+        if re1 == "usca":
+            re1 = "xa"
 
         team2 = match["team_2_short"]
         re2 = match["team_2_country"]
 
         if re2 == "cis":
             re2 = "xb"
+        if re2 == "world":
+            re2 = "wo"
+        if re2 == "usca":
+            re2 = "xa"
 
         tournament = match["coverage_title"]
         tournament_url = match["coverage_url"]
@@ -91,7 +99,7 @@ def get_jd_matches():
         else:
             dt = match["match_time"]
             gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
-            gamedate = gamedate - timedelta(hours = 1)
+            gamedate = gamedate - datetime.timedelta(hours = 1)
             delta = gamedate - nowdate
             days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
 
