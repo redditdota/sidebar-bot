@@ -153,7 +153,7 @@ def create_stupid_questions_thread():
     stupidquestions.createPost(r, subname, config.get("config", "STUPID_QUESTIONS_ID"))
     config.set("config", "STUPID_QUESTIONS_ID", str(int(config.get("config", "STUPID_QUESTIONS_ID")) + 1))
 
-    with open("config.txt", 'wb') as configfile:
+    with open("config.txt", 'w') as configfile:
         config.write(configfile)
 
 def cleanup_stupid_questions_thread():

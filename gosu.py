@@ -62,7 +62,7 @@ def get_jd_matches():
 
     r = requests.get(url, headers=headers)
 
-    matches = r.json()
+    matches = r.json()[:5]
 
     sidebar_matches = []
 
@@ -90,7 +90,7 @@ def get_jd_matches():
         if re2 == "usca":
             re2 = "xa"
 
-        tournament = match["coverage_title"]
+        tournament = match["coverage_title"].strip()
         tournament_url = match["coverage_url"]
 
         time = None
