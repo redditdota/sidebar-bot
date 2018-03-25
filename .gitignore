@@ -1,1 +1,4 @@
 *.pyc
+config.txt
+alreadyseen.json
+nohup.txt
