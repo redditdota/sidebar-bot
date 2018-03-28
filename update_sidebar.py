@@ -12,6 +12,7 @@ import twitch
 import gosu
 import events
 import stupidquestions
+import battlecup
 
 import configparser
 
@@ -159,12 +160,22 @@ def create_stupid_questions_thread():
 def cleanup_stupid_questions_thread():
     stupidquestions.unstickyPost(r)
 
+def create_battle_cup_thread():
+    battlecup.createPost(r, subname)
+
+def cleanup_battle_cup_thread():
+    stupidquestions.unstickyPost(r)
+
 if __name__ == "__main__":
     login()
 
     schedule.every(30).seconds.do(update_sidebar)
+
     schedule.every().monday.at("16:00").do(create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(cleanup_stupid_questions_thread)
+
+    schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
+    schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)
 
     while True:
         schedule.run_pending()

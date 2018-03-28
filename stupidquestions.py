@@ -9,11 +9,7 @@ Other resources:
 
 - The [Dota 2 Wiki](http://www.dota2wiki.com/wiki/Dota_2_Wiki) has tons of useful information.
 
-- Old [Stupid Questions threads](http://www.reddit.com/r/DotA2/search?q=title%3A%22Weekly+Stupid+Questions%22&restrict_sr=on&sort=new&t=all) - and [](#begin last_week)[last week's](http://reddit.com/r/dota2/comments/59vj00)[](#end last_week) for convenience.
-
-[](#hidden number 250)
-
-> > When the frist hit strikes wtih desolator, the hit stirkes as if the - armor debuff had already been placed?
+> > When the first hit strikes wtih desolator, the hit stirkes as if the - armor debuff had already been placed?
 
 > yes
 """
