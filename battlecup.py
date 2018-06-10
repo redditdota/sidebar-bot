@@ -1,5 +1,8 @@
 import praw
 
+import datetime
+import calendar
+
 posttitle = "Find Your Battle Cup Party"
 
 postbody = """
@@ -36,7 +39,7 @@ Have fun!
 """
 
 def createPost(r, subname):
-    title = posttitle
+    title = posttitle + " | " + calendar.month_name[datetime.datetime.today().month] + " " + datetime.datetime.today().day
     submission = r.subreddit(subname).submit(title, selftext=postbody)
     submission.disable_inbox_replies()
     submission.mod.flair(text="Other")

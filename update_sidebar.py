@@ -131,7 +131,7 @@ def update_flairs():
             message.mark_read()
 
 def do_update_sidebar(sidebar):
-    #sidebar = update_prize_pool(sidebar)
+    sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
@@ -166,7 +166,9 @@ def create_battle_cup_thread():
 def cleanup_battle_cup_thread():
     stupidquestions.unstickyPost(r)
 
+
 if __name__ == "__main__":
+    print("hello")
     login()
 
     schedule.every(30).seconds.do(update_sidebar)

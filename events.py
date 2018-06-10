@@ -30,9 +30,7 @@ def get_upcoming_events():
     for event in events:
         name = event["summary"]
         desc = event["description"].split()
-        url = ""
-        if desc:
-            url = desc[-1]
+        url = event["location"]
 
         startDate = datetime.strptime(event["start"]["date"], '%Y-%m-%d')
         endDate = datetime.strptime(event["end"]["date"], '%Y-%m-%d')
@@ -50,5 +48,4 @@ def get_upcoming_events():
     for event in sidebar_events:
         upcoming_events += event["start"] + " - " + event["end"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
 
-    
     return upcoming_events

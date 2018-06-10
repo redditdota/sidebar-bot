@@ -99,7 +99,7 @@ def get_jd_matches():
         else:
             dt = match["match_time"]
             gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
-            gamedate = gamedate - datetime.timedelta(hours = 1)
+            gamedate = gamedate - datetime.timedelta(hours = 3)
             delta = gamedate - nowdate
             days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
 
