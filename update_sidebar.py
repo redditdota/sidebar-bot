@@ -41,6 +41,9 @@ def update_prize_pool(sidebar_contents):
     header = "######"
     footer = "(#side)"
 
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
+
     header_index = sidebar_contents.index(header) + len(header)
     footer_index = sidebar_contents.index(footer)
 
@@ -50,7 +53,7 @@ def update_prize_pool(sidebar_contents):
 
 def update_streamers(sidebar_contents):
     header = "[*Livestreams*](#livestreamheading)"
-    footer = "**[More Live Streams]" 
+    footer = "**[More Live Streams]"
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
@@ -61,7 +64,7 @@ def update_streamers(sidebar_contents):
 
 def update_matches(sidebar_contents):
     header = "[*Upcoming Matches*](#upcomingheading)"
-    footer = "**[More Upcoming]" 
+    footer = "**[More Upcoming]"
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
@@ -72,7 +75,7 @@ def update_matches(sidebar_contents):
 
 def update_events(sidebar_contents):
     header = "[*Upcoming Events*](#upcomingeventsheading)"
-    footer = "**[More Events]" 
+    footer = "**[More Events]"
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
@@ -87,7 +90,7 @@ def get_sidebar():
     mod = sub.mod
     settings = mod.settings()
     sidebar_contents = settings['description']
-    
+
     return sidebar_contents
 
 def push_sidebar(new_sidebar):

@@ -39,6 +39,7 @@ def get_gosu_matches():
         else:
             dt = match["datetime"]
             gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
+            gamedate = gamedate - datetime.timedelta(hours = 1)
             delta = gamedate - nowdate
             days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
 
@@ -51,7 +52,7 @@ def get_gosu_matches():
 
         sidebar_matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2":
             re2.lower(), "tournament": tournament, "time": time, "link": matchUrl})
-        
+
     return sidebar_matches
 
 def get_jd_matches():
@@ -190,12 +191,12 @@ def format_matches(sidebar_matches):
         sidebarmatch += "\n[](#separator)\n\n"
 
         formatted_matches.append(sidebarmatch)
-    
+
     return "".join(formatted_matches)
 
 
 def get_matches():
-    #matches = get_gosu_matches()
-    matches = get_jd_matches()
+    matches = get_gosu_matches()
+    #matches = get_jd_matches()
 
     return format_matches(matches)
