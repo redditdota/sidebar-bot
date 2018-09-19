@@ -13,6 +13,7 @@ import gosu
 import events
 import stupidquestions
 import battlecup
+import countdown
 
 import configparser
 
@@ -31,11 +32,6 @@ def login():
                          password=config.get("config", "BOT_PASSWORD"),
                          user_agent='Dota 2 sidebar bot',
                          username=config.get("config", "BOT_USERNAME"))
-
-    #heroku_conn = heroku3.from_key(config.get("config", "HEROKU_API_KEY"))
-    #app = heroku_conn.apps()['dota2sidebar']
-    #config = app.config()
-
 
 def update_prize_pool(sidebar_contents):
     header = "######"
@@ -84,6 +80,16 @@ def update_events(sidebar_contents):
 
     return new_sidebar
 
+def update_countdown(sidebar_contents):
+    header = "######["
+    footer = "](#side)"
+
+    header_index = sidebar_contents.index(header) + len(header)
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + countdown.get_countdown() + sidebar_contents[footer_index:]
+
+    return new_sidebar
 
 def get_sidebar():
     sub = r.subreddit(subname)
@@ -141,13 +147,26 @@ def do_update_sidebar(sidebar):
 
     return sidebar
 
+def do_update_artifact_sidebar(sidebar):
+    sidebar = update_countdown(sidebar)
+
+    return sidebar
+
 def update_sidebar():
     print(time.ctime())
     print("UPDATING!")
 
+    subname = "dota2"
     sidebar = get_sidebar()
     sidebar = do_update_sidebar(sidebar)
     push_sidebar(sidebar)
+
+    subname = "artifact"
+    sidebar = get_sidebar()
+    sidebar = do_update_artifact_sidebar(sidebar)
+    push_sidebar(sidebar)
+
+    subname = "dota2"
 
     update_flairs()
 
