@@ -58,6 +58,17 @@ def update_streamers(sidebar_contents):
 
     return new_sidebar
 
+def update_artifact_streams(sidebar_contents):
+    header = "[*Livestreams*](#welcomeheading)"
+    footer = "**[More Live Streams]"
+
+    header_index = sidebar_contents.index(header) + len(header) + 4
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + twitch.get_top_artifact_channels() + sidebar_contents[footer_index:]
+
+    return new_sidebar
+
 def update_matches(sidebar_contents):
     header = "[*Upcoming Matches*](#upcomingheading)"
     footer = "**[More Upcoming]"
@@ -142,19 +153,22 @@ def update_flairs():
 def do_update_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
-    sidebar = update_matches(sidebar)
+    #sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
 
     return sidebar
 
 def do_update_artifact_sidebar(sidebar):
     sidebar = update_countdown(sidebar)
+    sidebar = update_artifact_streams(sidebar)
 
     return sidebar
 
 def update_sidebar():
     print(time.ctime())
     print("UPDATING!")
+
+    global subname
 
     subname = "dota2"
     sidebar = get_sidebar()
@@ -168,7 +182,7 @@ def update_sidebar():
 
     subname = "dota2"
 
-    update_flairs()
+    #update_flairs()
 
     #threading.Timer(30, update_sidebar).start()
 
@@ -181,6 +195,16 @@ def create_stupid_questions_thread():
 
 def cleanup_stupid_questions_thread():
     stupidquestions.unstickyPost(r)
+
+def artifact_create_stupid_questions_thread():
+    stupidquestions.artifact_createPost(r, "artifact", config.get("config", "ARTIFACT_STUPID_QUESTIONS_ID"))
+    config.set("config", "ARTIFACT_STUPID_QUESTIONS_ID", str(int(config.get("config", "ARTIFACT_STUPID_QUESTIONS_ID")) + 1))
+
+    with open("config.txt", 'w') as configfile:
+        config.write(configfile)
+
+def artifact_cleanup_stupid_questions_thread():
+    stupidquestions.artifact_unstickyPost(r)
 
 def create_battle_cup_thread():
     battlecup.createPost(r, subname)
@@ -197,6 +221,9 @@ if __name__ == "__main__":
 
     schedule.every().monday.at("16:00").do(create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(cleanup_stupid_questions_thread)
+
+    schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
+    schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
 
     schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
     schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)

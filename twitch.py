@@ -51,7 +51,64 @@ def get_top_channels():
         status = channel["status"]
         name = channel["display_name"]
         url = channel["url"]
-        
+
+        if '`' in status:
+            status = status.replace("`", "\`")
+        if '[' in status:
+            status = status.replace("[", "\[")
+        if ']' in status:
+            status = status.replace("]", "\]")
+        if '\r' in status:
+            status = status.replace("\r", '')
+        if '\n' in status:
+            status = status.replace("\n", '')
+
+        sidebar_channels = {"name": name, "status": status,
+                            "viewers": viewers, "url": url}
+        top_dota_channels.append(sidebar_channels)
+
+        counter += 1
+
+    updated_matches = ""
+
+    for channel in top_dota_channels:
+        updated_matches += ">>>#[" + channel["status"] + \
+            "](" + channel["url"] + ")\n"
+        updated_matches += ">##" + "\n"
+        updated_matches += ">###" + \
+            str(channel["viewers"]) + " @ " + channel["name"] + "\n"
+        updated_matches += "\n" + ">>[](#separator)" + "\n\n"
+
+    return updated_matches
+
+def get_top_artifact_channels():
+    url = 'https://api.twitch.tv/kraken/streams?game=Artifact'
+    headers = {'Client-ID': clientID}
+
+    r = requests.get(url, headers=headers)
+
+    dota_channels = r.json()
+    top_dota_channels = []
+
+    counter = 0
+    for stream in dota_channels['streams']:
+        if counter >= 5:
+            break
+
+        channel = stream["channel"]
+
+        if channel["display_name"] in whitelist:
+            pass
+        elif "dota2ruhub" in channel["display_name"].lower():
+            continue
+        elif channel["broadcaster_language"] != "en":
+            continue
+
+        viewers = stream["viewers"]
+        status = channel["status"]
+        name = channel["display_name"]
+        url = channel["url"]
+
         if '`' in status:
             status = status.replace("`", "\`")
         if '[' in status:
