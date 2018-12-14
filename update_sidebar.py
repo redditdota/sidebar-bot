@@ -153,13 +153,12 @@ def update_flairs():
 def do_update_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
-    #sidebar = update_matches(sidebar)
+    sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
 
     return sidebar
 
 def do_update_artifact_sidebar(sidebar):
-    #sidebar = update_countdown(sidebar)
     sidebar = update_artifact_streams(sidebar)
     return sidebar
 
