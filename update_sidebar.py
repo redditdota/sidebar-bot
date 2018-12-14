@@ -5,7 +5,6 @@ import datetime
 
 import praw
 import schedule
-import heroku3
 
 import prize_pool
 import twitch
@@ -46,6 +45,9 @@ def update_prize_pool(sidebar_contents):
     if header not in sidebar_contents or footer not in sidebar_contents:
         return sidebar_contents
 
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
+
     header_index = sidebar_contents.index(header) + len(header)
     footer_index = sidebar_contents.index(footer)
 
@@ -56,6 +58,9 @@ def update_prize_pool(sidebar_contents):
 def update_streamers(sidebar_contents):
     header = "[*Livestreams*](#livestreamheading)"
     footer = "**[More Live Streams]"
+
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
@@ -68,6 +73,9 @@ def update_artifact_streams(sidebar_contents):
     header = "[*Livestreams*](#welcomeheading)"
     footer = "**[More Live Streams]"
 
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
+
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
 
@@ -78,6 +86,9 @@ def update_artifact_streams(sidebar_contents):
 def update_matches(sidebar_contents):
     header = "[*Upcoming Matches*](#upcomingheading)"
     footer = "**[More Upcoming]"
+
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
 
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
@@ -90,6 +101,9 @@ def update_events(sidebar_contents):
     header = "[*Upcoming Events*](#upcomingeventsheading)"
     footer = "**[More Events]"
 
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
+
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
 
@@ -97,9 +111,26 @@ def update_events(sidebar_contents):
 
     return new_sidebar
 
+def update_artifact_events(sidebar_contents):
+    header = "[*Upcoming Tournaments*](#subsheading)"
+    footer = "**[More Tournaments]"
+
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
+
+    header_index = sidebar_contents.index(header) + len(header) + 4
+    footer_index = sidebar_contents.index(footer)
+
+    new_sidebar = sidebar_contents[:header_index] + events.get_upcoming_tournaments() + sidebar_contents[footer_index:]
+
+    return new_sidebar
+
 def update_countdown(sidebar_contents):
     header = "######["
     footer = "](#side)"
+
+    if header not in sidebar_contents or footer not in sidebar_contents:
+        return sidebar_contents
 
     header_index = sidebar_contents.index(header) + len(header)
     footer_index = sidebar_contents.index(footer)
@@ -166,6 +197,7 @@ def do_update_sidebar(sidebar):
 
 def do_update_artifact_sidebar(sidebar):
     sidebar = update_artifact_streams(sidebar)
+    sidebar = update_artifact_events(sidebar)
     return sidebar
 
 def update_sidebar():
