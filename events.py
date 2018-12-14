@@ -80,7 +80,7 @@ def get_upcoming_tournaments():
         elif str(hours) != "0":
             time = str(hours) + "h " + str(mins) + "m"
         else:
-            time = str(rmins) + "m"
+            time = str(mins) + "m"
 
         sidebar_events.append({"name" : name, "time": time, "url": url})
 
@@ -91,5 +91,3 @@ def get_upcoming_tournaments():
         upcoming_events += event["time"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
 
     return upcoming_events
-
-get_upcoming_tournaments()
