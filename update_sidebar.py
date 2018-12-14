@@ -16,6 +16,8 @@ import battlecup
 import countdown
 
 import configparser
+import getpass
+
 
 config = configparser.ConfigParser()
 config.read("config.txt")
@@ -27,9 +29,10 @@ def login():
     global r
     global config
 
+    password = getpass.getpass()
     r = praw.Reddit(client_id=config.get("config", "CLIENT_ID"),
                          client_secret=config.get("config", "CLIENT_SECRET"),
-                         password=config.get("config", "BOT_PASSWORD"),
+                         password=password,
                          user_agent='Dota 2 sidebar bot',
                          username=config.get("config", "BOT_USERNAME"))
 
