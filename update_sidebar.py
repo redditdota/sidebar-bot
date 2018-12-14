@@ -23,13 +23,16 @@ config = configparser.ConfigParser()
 config.read("config.txt")
 
 r = None
+password = None
 subname = "dota2"
 
 def login():
     global r
+    global password
     global config
 
-    password = getpass.getpass()
+    if password is None:
+        password = getpass.getpass()
     r = praw.Reddit(client_id=config.get("config", "CLIENT_ID"),
                          client_secret=config.get("config", "CLIENT_SECRET"),
                          password=password,
