@@ -16,7 +16,6 @@ import battlecup
 import countdown
 
 import configparser
-import getpass
 
 
 config = configparser.ConfigParser()
@@ -24,7 +23,6 @@ config.read("config.txt")
 
 r = None
 password = None
-subname = "dota2"
 
 def login():
     global r
@@ -140,16 +138,14 @@ def update_countdown(sidebar_contents):
 
     return new_sidebar
 
-def get_sidebar():
-    sub = r.subreddit(subname)
+def get_sidebar(sub):
     mod = sub.mod
     settings = mod.settings()
     sidebar_contents = settings['description']
 
     return sidebar_contents
 
-def push_sidebar(new_sidebar):
-    sub = r.subreddit(subname)
+def push_sidebar(new_sidebar, sub):
     mod = sub.mod
     settings = mod.settings()
 
@@ -166,12 +162,12 @@ def push_sidebar(new_sidebar):
 
     sub._create_or_update(_reddit=sub._reddit, sr=fullname, **settings)
 
-def update_flairs():
+def update_flairs(sub):
     for message in r.inbox.unread():
         if "change my flair text" in message.subject.lower():
             if len(message.body) <= 64:
-                cssclass = r.subreddit(subname).flair(redditor=message.author).next()['flair_css_class']
-                r.subreddit(subname).flair.set(message.author, message.body, cssclass)
+                cssclass = sub.flair(redditor=message.author).next()['flair_css_class']
+                sub.flair.set(message.author, message.body, cssclass)
 
                 message.reply("""I've changed your flair text to **""" + message.body + """**! Send me a
                         new message if you want it changed again.""")
@@ -188,7 +184,7 @@ def update_flairs():
                 . Thanks!""")
             message.mark_read()
 
-def do_update_sidebar(sidebar):
+def do_update_dota_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     sidebar = update_matches(sidebar)
@@ -205,32 +201,28 @@ def update_sidebar():
     print(time.ctime())
     print("UPDATING!")
 
-    global subname
+    dota2 = r.subreddit("dota2")
+    sidebar = get_sidebar(dota2)
+    sidebar = do_update_dota_sidebar(sidebar)
+    push_sidebar(sidebar, dota2)
 
-    subname = "dota2"
-    sidebar = get_sidebar()
-    sidebar = do_update_sidebar(sidebar)
-    push_sidebar(sidebar)
-
-    subname = "artifact"
-    sidebar = get_sidebar()
+    artifact = r.subreddit("artifact")
+    sidebar = get_sidebar(artifact)
     sidebar = do_update_artifact_sidebar(sidebar)
-    push_sidebar(sidebar)
+    push_sidebar(sidebar, artifact)
 
-    subname = "dota2"
-
-    #update_flairs()
+    #update_flairs("dota2")
 
     #threading.Timer(30, update_sidebar).start()
 
-def create_stupid_questions_thread():
-    stupidquestions.createPost(r, subname, config.get("config", "STUPID_QUESTIONS_ID"))
+def dota_create_stupid_questions_thread():
+    stupidquestions.createPost(r, "dota2", config.get("config", "STUPID_QUESTIONS_ID"))
     config.set("config", "STUPID_QUESTIONS_ID", str(int(config.get("config", "STUPID_QUESTIONS_ID")) + 1))
 
     with open("config.txt", 'w') as configfile:
         config.write(configfile)
 
-def cleanup_stupid_questions_thread():
+def dota_cleanup_stupid_questions_thread():
     stupidquestions.unstickyPost(r)
 
 def artifact_create_stupid_questions_thread():
@@ -244,7 +236,7 @@ def artifact_cleanup_stupid_questions_thread():
     stupidquestions.artifact_unstickyPost(r)
 
 def create_battle_cup_thread():
-    battlecup.createPost(r, subname)
+    battlecup.createPost(r, "dota2")
 
 def cleanup_battle_cup_thread():
     stupidquestions.unstickyPost(r)
@@ -256,8 +248,8 @@ if __name__ == "__main__":
 
     schedule.every(30).seconds.do(update_sidebar)
 
-    schedule.every().monday.at("16:00").do(create_stupid_questions_thread)
-    schedule.every().tuesday.at("16:00").do(cleanup_stupid_questions_thread)
+    schedule.every().monday.at("16:00").do(dota_create_stupid_questions_thread)
+    schedule.every().tuesday.at("16:00").do(dota_cleanup_stupid_questions_thread)
 
     schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
     schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
