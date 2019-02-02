@@ -16,7 +16,8 @@ def get_top_channels():
         status = channel["status"]
         if "|" in status:
             status = status[:status.index("|")]
-        status = status[:MAX_LENGTH] + "..."
+        if len(status) > MAX_LENGTH:
+            status = status[:MAX_LENGTH] + "..."
 
         text += "[%s](%s) |" % (status, channel["url"])
         text += " %d | " % (channel["viewers"])
