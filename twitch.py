@@ -125,7 +125,7 @@ def get_top_artifact_channels():
 
     updated_matches = ""
 
-    for channel in top_dota_channels:
+    for channel in top_artifact_channels:
         updated_matches += ">>>#[" + channel["status"] + \
             "](" + channel["url"] + ")\n"
         updated_matches += ">##" + "\n"
