@@ -2,23 +2,44 @@ import praw
 import twitch
 import gosu
 
+MAX_LENGTH = 20
+
+ABBREVIATIONS = {
+    "Season " : "S",
+    "Qualifier" : "Qual"
+}
+
 def get_top_channels():
-    text = ". | . | . \n"
+    text = "Twitch | 👁 | Streamer \n"
+    text += ":- | :- | :- \n"
     for channel in twitch.get_top_channels_raw():
-        text += "[%s](%s) |".format(channel["status"], channel["url"])
-        text += "👁 %d | ".format(channel["viewers"])
-        text += "@ %s \n ".format(channel["name"])
+        status = channel["status"]
+        if "|" in status:
+            status = status[:status.index("|")]
+        status = status[:MAX_LENGTH] + "..."
+
+        text += "[%s](%s) |" % (status, channel["url"])
+        text += " %d | " % (channel["viewers"])
+        text += " %s \n " % (channel["name"])
     return text
+
+
+def shorten(tournament):
+    for word in ABBREVIATIONS.keys():
+        if word in tournament:
+            tournament = tournament.replace(word, ABBREVIATIONS[word])
+    return tournament
 
 
 def get_matches():
     text = "Time | Team | vs | Team | Tournament\n"
+    text += ":- | :-: | :- | :-: | :- \n"
     for match in gosu.get_gosu_matches():
-        text += match["time"] + " | "
+        text += "[%s](%s)" % (match["time"], match["link"]) + " | "
         text += match["team1"] + " | "
         text += "vs" + " | "
         text += match["team2"] + " | "
-        text += match["tournament"] + "\n"
+        text += shorten(match["tournament"]) + "\n"
 
     return text
 

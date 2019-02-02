@@ -66,8 +66,6 @@ def get_top_channels_raw():
                             "viewers": viewers, "url": url}
         top_dota_channels.append(sidebar_channels)
 
-        counter += 1
-
     return top_dota_channels
 
 
@@ -89,12 +87,11 @@ def get_top_artifact_channels():
 
     r = requests.get(url, headers=headers)
 
-    dota_channels = r.json()
-    top_dota_channels = []
+    artifact_channels = r.json()
+    top_artifact_channels = []
 
-    counter = 0
-    for stream in dota_channels['streams']:
-        if counter >= 5:
+    for stream in artifact_channels['streams']:
+        if len(top_artifact_channels) >= 5:
             break
 
         channel = stream["channel"]
@@ -124,9 +121,7 @@ def get_top_artifact_channels():
 
         sidebar_channels = {"name": name, "status": status,
                             "viewers": viewers, "url": url}
-        top_dota_channels.append(sidebar_channels)
-
-        counter += 1
+        top_artifact_channels.append(sidebar_channels)
 
     updated_matches = ""
 
