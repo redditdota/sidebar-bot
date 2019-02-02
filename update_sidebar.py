@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import time, threading
 import datetime
 
@@ -31,7 +32,7 @@ def login():
     global config
 
     if password is None:
-        password = getpass.getpass()
+        password = sys.argv[1]
     r = praw.Reddit(client_id=config.get("config", "CLIENT_ID"),
                          client_secret=config.get("config", "CLIENT_SECRET"),
                          password=password,
