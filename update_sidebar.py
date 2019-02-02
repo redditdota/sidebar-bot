@@ -64,7 +64,7 @@ def update_streamers(sidebar_contents):
     header_index = sidebar_contents.index(header) + len(header) + 4
     footer_index = sidebar_contents.index(footer)
 
-    new_sidebar = sidebar_contents[:header_index] + twitch.get_top_channels() + sidebar_contents[footer_index:]
+    new_sidebar = sidebar_contents[:header_index] + twitch.get_top_dota_channels() + sidebar_contents[footer_index:]
 
     return new_sidebar
 

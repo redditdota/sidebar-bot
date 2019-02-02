@@ -9,10 +9,15 @@ ABBREVIATIONS = {
     "Qualifier" : "Qual"
 }
 
-def get_top_channels():
+def get_top_channels(sub):
     text = "Twitch | 👁 | Streamer \n"
     text += ":- | :- | :- \n"
-    for channel in twitch.get_top_channels_raw():
+
+    channels = twitch.get_top_channels_raw(sub)
+    if len(channels) == 0:
+        return ""
+
+    for channel in channels:
         status = channel["status"]
         if "|" in status:
             status = status[:status.index("|")]
@@ -35,7 +40,12 @@ def shorten(tournament):
 def get_matches():
     text = "Time | Team | vs | Team | Tournament\n"
     text += ":- | :-: | :- | :-: | :- \n"
-    for match in gosu.get_gosu_matches():
+
+    matches = gosu.get_gosu_matches()
+    if len(matches) == 0:
+        return ""
+
+    for match in matches:
         text += "[%s](%s)" % (match["time"], match["link"]) + " | "
         text += match["team1"] + " | "
         text += "vs" + " | "
@@ -49,9 +59,11 @@ def update_sidebar(sub):
     for w in sub.widgets.sidebar:
         if isinstance(w, praw.models.TextArea):
             if "Livestreams" in w.shortName:
-                w.mod.update(text=get_top_channels())
-                #print(w.text)
+                text = get_top_channels(sub)
+                if len(text) > 0:
+                    w.mod.update(text=text)
             elif "Upcoming Matches" in w.shortName:
-                w.mod.update(text=get_matches())
-                #print(w.text)
+                text = get_matches()
+                if len(text) > 0:
+                    w.mod.update(text=text)
 

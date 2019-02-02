@@ -23,9 +23,7 @@ def is_ascii(text):
             return False
     return True
 
-
-def get_top_channels_raw():
-    url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
+def _get_top_channels_raw(url):
     headers = {'Client-ID': clientID}
 
     r = requests.get(url, headers=headers)
@@ -69,9 +67,9 @@ def get_top_channels_raw():
     return top_dota_channels
 
 
-def get_top_channels():
+def _get_top_channels(url):
     updated_matches = ""
-    for channel in get_top_channels_raw():
+    for channel in _get_top_channels_raw(url):
         updated_matches += ">>>#[" + channel["status"] + \
             "](" + channel["url"] + ")\n"
         updated_matches += ">##" + "\n"
@@ -82,55 +80,15 @@ def get_top_channels():
     return updated_matches
 
 def get_top_artifact_channels():
-    url = 'https://api.twitch.tv/kraken/streams?game=Artifact'
-    headers = {'Client-ID': clientID}
+    return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Artifact')
 
-    r = requests.get(url, headers=headers)
+def get_top_dota_channels():
+    return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Dota+2')
 
-    artifact_channels = r.json()
-    top_artifact_channels = []
+def get_top_channels_raw(sub):
+    if sub.display_name.lower() == "dota2":
+        return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Dota+2')
+    elif sub.display_name.lower() == "artifact":
+        return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Artifact')
 
-    for stream in artifact_channels['streams']:
-        if len(top_artifact_channels) >= 5:
-            break
-
-        channel = stream["channel"]
-
-        if channel["display_name"] in whitelist:
-            pass
-        elif "dota2ruhub" in channel["display_name"].lower():
-            continue
-        elif channel["broadcaster_language"] != "en":
-            continue
-
-        viewers = stream["viewers"]
-        status = channel["status"]
-        name = channel["display_name"]
-        url = channel["url"]
-
-        if '`' in status:
-            status = status.replace("`", "\`")
-        if '[' in status:
-            status = status.replace("[", "\[")
-        if ']' in status:
-            status = status.replace("]", "\]")
-        if '\r' in status:
-            status = status.replace("\r", '')
-        if '\n' in status:
-            status = status.replace("\n", '')
-
-        sidebar_channels = {"name": name, "status": status,
-                            "viewers": viewers, "url": url}
-        top_artifact_channels.append(sidebar_channels)
-
-    updated_matches = ""
-
-    for channel in top_artifact_channels:
-        updated_matches += ">>>#[" + channel["status"] + \
-            "](" + channel["url"] + ")\n"
-        updated_matches += ">##" + "\n"
-        updated_matches += ">###" + \
-            str(channel["viewers"]) + " @ " + channel["name"] + "\n"
-        updated_matches += "\n" + ">>[](#separator)" + "\n\n"
-
-    return updated_matches
+    return []
