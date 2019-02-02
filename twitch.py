@@ -24,7 +24,7 @@ def is_ascii(text):
     return True
 
 
-def get_top_channels():
+def get_top_channels_raw():
     url = 'https://api.twitch.tv/kraken/streams?game=Dota+2'
     headers = {'Client-ID': clientID}
 
@@ -33,9 +33,8 @@ def get_top_channels():
     dota_channels = r.json()
     top_dota_channels = []
 
-    counter = 0
     for stream in dota_channels['streams']:
-        if counter >= 5:
+        if len(top_dota_channels) >= 5:
             break
 
         channel = stream["channel"]
@@ -69,9 +68,12 @@ def get_top_channels():
 
         counter += 1
 
-    updated_matches = ""
+    return top_dota_channels
 
-    for channel in top_dota_channels:
+
+def get_top_channels():
+    updated_matches = ""
+    for channel in get_top_channels_raw():
         updated_matches += ">>>#[" + channel["status"] + \
             "](" + channel["url"] + ")\n"
         updated_matches += ">##" + "\n"
