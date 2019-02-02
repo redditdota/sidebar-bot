@@ -14,9 +14,9 @@ import events
 import stupidquestions
 import battlecup
 import countdown
+import redesign
 
 import configparser
-
 
 config = configparser.ConfigParser()
 config.read("config.txt")
@@ -205,11 +205,13 @@ def update_sidebar():
     sidebar = get_sidebar(dota2)
     sidebar = do_update_dota_sidebar(sidebar)
     push_sidebar(sidebar, dota2)
+    redesign.update_sidebar(dota2)
 
     artifact = r.subreddit("artifact")
     sidebar = get_sidebar(artifact)
     sidebar = do_update_artifact_sidebar(sidebar)
     push_sidebar(sidebar, artifact)
+    redesign.update_sidebar(artifact)
 
     #update_flairs("dota2")
 
