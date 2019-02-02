@@ -21,7 +21,7 @@ def get_top_channels():
 
         text += "[%s](%s) |" % (status, channel["url"])
         text += " %d | " % (channel["viewers"])
-        text += " %s \n " % (channel["name"])
+        text += "[%s](%s) \n " % (channel["name"], channel["url"])
     return text
 
 
