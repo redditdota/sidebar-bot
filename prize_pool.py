@@ -2,7 +2,7 @@ import requests
 import locale
 
 def get_prize_pool():
-    url = 'https://www.dota2.com/webapi/IDOTA2League/GetPrizePool/v001?league_id=9870'
+    url = 'https://www.dota2.com/webapi/IDOTA2League/GetPrizePool/v001?league_id=10749'
 
     r = requests.get(url)
     prize_pool_json = r.json()

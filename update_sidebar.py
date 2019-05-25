@@ -15,6 +15,7 @@ import stupidquestions
 import battlecup
 import countdown
 import redesign
+import chess
 
 import configparser
 
@@ -187,7 +188,8 @@ def update_flairs(sub):
 def do_update_dota_sidebar(sidebar):
     sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
-    sidebar = update_matches(sidebar)
+    if not chess.useChessSidebar:
+        sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
 
     return sidebar

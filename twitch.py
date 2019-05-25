@@ -1,5 +1,6 @@
 import requests
 import os
+import chess
 
 import configparser
 
@@ -83,11 +84,19 @@ def get_top_artifact_channels():
     return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Artifact')
 
 def get_top_dota_channels():
-    return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Dota+2')
+    if not chess.useChessSidebar:
+        return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Dota+2')
+    else:
+        print("doing it")
+        return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Chess')
 
 def get_top_channels_raw(sub):
     if sub.display_name.lower() == "dota2":
-        return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Dota+2')
+        if not chess.useChessSidebar:
+            return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Dota+2')
+        else:
+            print("doing it")
+            return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Chess')
     elif sub.display_name.lower() == "artifact":
         return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Artifact')
 

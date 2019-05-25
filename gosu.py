@@ -21,6 +21,7 @@ def get_gosu_matches():
     matches = r.json()["matches"][:5]
 
     sidebar_matches = []
+
     for match in matches:
 
         isLive = match["isLive"]
@@ -39,6 +40,10 @@ def get_gosu_matches():
             time = "LIVE"
         else:
             dt = match["datetime"]
+
+            if dt == None:
+                continue
+
             gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
             gamedate = gamedate# - datetime.timedelta(hours = 1)
             delta = gamedate - nowdate
