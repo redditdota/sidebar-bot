@@ -11,18 +11,21 @@ config.read("config.txt")
 apiKey = config.get("config", "GOSU_API_KEY")
 
 def get_gosu_matches():
-    url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=5"
+    url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=50"
 
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
 
     r = requests.get(url)
     print(r.status_code)
 
-    matches = r.json()["matches"][:5]
+    matches = r.json()["matches"]
 
     sidebar_matches = []
 
     for match in matches:
+
+        if len(sidebar_matches) >= 5:
+            break
 
         isLive = match["isLive"]
         matchUrl = match["pageUrl"]
