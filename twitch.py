@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 import os
 import chess
@@ -37,12 +38,15 @@ def _get_top_channels_raw(url):
             break
 
         channel = stream["channel"]
+        createdAt = datetime.strptime(channel["created_at"], "%Y-%m-%dT%H:%M:%SZ")
 
         if channel["display_name"] in whitelist:
             pass
         elif "dota2ruhub" in channel["display_name"].lower():
             continue
         elif channel["broadcaster_language"] != "en":
+            continue
+        elif (datetime.now() - createdAt).days < 5:
             continue
 
         viewers = stream["viewers"]
