@@ -37,6 +37,7 @@ def _get_top_channels_raw(url):
             break
 
         channel = stream["channel"]
+        createdAt = datetime.strptime(channel["created_at"], "%Y-%m-%dT%H:%M:%SZ")
 
         if channel["display_name"] in whitelist:
             pass
@@ -44,7 +45,9 @@ def _get_top_channels_raw(url):
             continue
         elif channel["broadcaster_language"] != "en":
             continue
-
+        elif (datetime.now() - createdAt).days < 5:
+            continue
+            
         viewers = stream["viewers"]
         status = channel["status"]
         name = channel["display_name"]
