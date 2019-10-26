@@ -24,7 +24,6 @@ artifactKey = config.get("config", "ARTIFACT_GOOGLE_KEY")
 artifactCalendarId = config.get("config", "ARTIFACT_CALENDAR_ID")
 
 tz = timezone('America/New_York')
-tzOffset = datetime.now(tz).strftime('%z').replace("00", ":00")
 
 def get_upcoming_events():
     service = build(serviceName='calendar', version='v3',
@@ -75,8 +74,8 @@ def get_upcoming_tournaments():
         name = event["summary"]
         url = event["location"]
 
-        startTime = datetime.strptime(event["start"]["dateTime"], '%Y-%m-%dT%H:%M:%S' + tzOffset)
-        nowdate  = datetime.now(tz).replace(tzinfo=None)
+        startTime = datetime.strptime(event["start"]["dateTime"].replace(":", ""), '%Y-%m-%dT%H%M%S%z')
+        nowdate  = datetime.now(tz)
         delta = startTime - nowdate
         days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
         if str(days) != "0":

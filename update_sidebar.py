@@ -186,7 +186,7 @@ def update_flairs(sub):
             message.mark_read()
 
 def do_update_dota_sidebar(sidebar):
-    sidebar = update_prize_pool(sidebar)
+    #sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
     if not chess.useChessSidebar:
         sidebar = update_matches(sidebar)
@@ -255,11 +255,11 @@ if __name__ == "__main__":
     schedule.every().monday.at("16:00").do(dota_create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(dota_cleanup_stupid_questions_thread)
 
-    schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
-    schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
+    #schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
+    #schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
 
-    schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
-    schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)
+    #schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
+    #schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)
 
     while True:
         schedule.run_pending()

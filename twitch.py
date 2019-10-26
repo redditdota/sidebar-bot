@@ -33,26 +33,14 @@ def _get_top_channels_raw(url):
     dota_channels = r.json()
     top_dota_channels = []
 
-    for stream in dota_channels['streams']:
+    for stream in dota_channels['data']:
         if len(top_dota_channels) >= 5:
             break
 
-        channel = stream["channel"]
-        createdAt = datetime.strptime(channel["created_at"], "%Y-%m-%dT%H:%M:%SZ")
-
-        if channel["display_name"] in whitelist:
-            pass
-        elif "dota2ruhub" in channel["display_name"].lower():
-            continue
-        elif channel["broadcaster_language"] != "en":
-            continue
-        elif (datetime.now() - createdAt).days < 5:
-            continue
-
-        viewers = stream["viewers"]
-        status = channel["status"]
-        name = channel["display_name"]
-        url = channel["url"]
+        viewers = stream["viewer_count"]
+        status = stream["title"]
+        name = stream["user_name"]
+        url = "https://www.twitch.tv/" + name
 
         if '`' in status:
             status = status.replace("`", "\`")
@@ -85,23 +73,15 @@ def _get_top_channels(url):
     return updated_matches
 
 def get_top_artifact_channels():
-    return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Artifact')
+    return _get_top_channels('https://api.twitch.tv/helix/streams?game_id=16937&language=en')
 
 def get_top_dota_channels():
-    if not chess.useChessSidebar:
-        return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Dota+2')
-    else:
-        print("doing it")
-        return _get_top_channels('https://api.twitch.tv/kraken/streams?game=Chess')
+    return _get_top_channels('https://api.twitch.tv/helix/streams?game_id=29595&language=en')
 
 def get_top_channels_raw(sub):
     if sub.display_name.lower() == "dota2":
-        if not chess.useChessSidebar:
-            return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Dota+2')
-        else:
-            print("doing it")
-            return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Chess')
+        return _get_top_channels_raw('https://api.twitch.tv/helix/streams?game_id=29595&language=en')
     elif sub.display_name.lower() == "artifact":
-        return _get_top_channels_raw('https://api.twitch.tv/kraken/streams?game=Artifact')
+        return _get_top_channels_raw('https://api.twitch.tv/helix/streams?game_id=16937&language=en')
 
     return []
