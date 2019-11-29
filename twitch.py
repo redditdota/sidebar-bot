@@ -10,8 +10,6 @@ config.read("config.txt")
 
 clientID = config.get("config", "TWITCH_CLIENT_ID")
 
-whitelist = ["nooneboss"]
-
 def is_ascii(text):
     if isinstance(text, unicode):
         try:
@@ -25,6 +23,11 @@ def is_ascii(text):
             return False
     return True
 
+def filter_channel(stream):
+    if 'arteezy' in stream["user_name"] and stream["user_name"] != 'arteezy':
+        return False
+    return True
+
 def _get_top_channels_raw(url):
     headers = {'Client-ID': clientID}
 
@@ -36,6 +39,9 @@ def _get_top_channels_raw(url):
     for stream in dota_channels['data']:
         if len(top_dota_channels) >= 5:
             break
+
+        if filter_channel(stream):
+            continue
 
         viewers = stream["viewer_count"]
         status = stream["title"]
