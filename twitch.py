@@ -24,8 +24,13 @@ def is_ascii(text):
     return True
 
 def filter_channel(stream):
-    if 'arteezy' in stream["user_name"] and stream["user_name"] != 'arteezy':
+    streamer = stream["user_name"].lower()
+    if 'arteezy' in streamer and streamer != 'arteezy':
         return True
+
+    if 'arcana' in stream['title'].lower():
+        return True
+
     return False
 
 def _get_top_channels_raw(url):
