@@ -11,6 +11,7 @@ config.read("config.txt")
 apiKey = config.get("config", "GOSU_API_KEY")
 
 def get_gosu_matches():
+
     url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=50"
 
     nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
@@ -47,7 +48,7 @@ def get_gosu_matches():
                 continue
 
             gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
-            gamedate = gamedate - datetime.timedelta(hours = 1)
+            #gamedate = gamedate - datetime.timedelta(hours = 1)
             delta = gamedate - nowdate
             days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
 

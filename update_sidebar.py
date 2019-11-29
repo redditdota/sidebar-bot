@@ -84,6 +84,7 @@ def update_artifact_streams(sidebar_contents):
     return new_sidebar
 
 def update_matches(sidebar_contents):
+
     header = "[*Upcoming Matches*](#upcomingheading)"
     footer = "**[More Upcoming]"
 
