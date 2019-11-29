@@ -25,8 +25,8 @@ def is_ascii(text):
 
 def filter_channel(stream):
     if 'arteezy' in stream["user_name"] and stream["user_name"] != 'arteezy':
-        return False
-    return True
+        return True
+    return False
 
 def _get_top_channels_raw(url):
     headers = {'Client-ID': clientID}
