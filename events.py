@@ -91,6 +91,10 @@ def get_upcoming_tournaments():
     upcoming_events += ". | .\n"
     upcoming_events += "---|---\n"
     for event in sidebar_events:
-        upcoming_events += event["time"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
+        name = event["name"]
+        if "major" or "minor" in name.lower():
+            name = "**{}**".format(name.strip())
+        print(name)
+        upcoming_events += event["time"] + " | [" + name + "](" + event["url"] + ")\n"
 
     return upcoming_events
