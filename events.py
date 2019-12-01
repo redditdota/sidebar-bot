@@ -68,9 +68,7 @@ def get_upcoming_events():
     for event in sidebar_events:
         name = event["name"]
         if is_dpc_lan(name):
-            print(event)
             name = "**{}**".format(name.strip())
-
         upcoming_events += event["start"] + " - " + event["end"] + " | [" + name + "](" + event["url"] + ")\n"
 
     return upcoming_events
