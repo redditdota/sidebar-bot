@@ -25,6 +25,17 @@ artifactCalendarId = config.get("config", "ARTIFACT_CALENDAR_ID")
 
 tz = timezone('America/New_York')
 
+def is_dpc_lan(name):
+
+    if "qualifier" in name.lower():
+        return False
+
+    if "major" in name.lower() or "minor" in name.lower():
+        return True
+
+    return False
+
+
 def get_upcoming_events():
     service = build(serviceName='calendar', version='v3',
         developerKey=dotaKey)
@@ -55,7 +66,12 @@ def get_upcoming_events():
     upcoming_events += ". | .\n"
     upcoming_events += "---|---\n"
     for event in sidebar_events:
-        upcoming_events += event["start"] + " - " + event["end"] + " | [" + event["name"] + "](" + event["url"] + ")\n"
+        name = event["name"]
+        if is_dpc_lan(name):
+            print(event)
+            name = "**{}**".format(name.strip())
+
+        upcoming_events += event["start"] + " - " + event["end"] + " | [" + name + "](" + event["url"] + ")\n"
 
     return upcoming_events
 
