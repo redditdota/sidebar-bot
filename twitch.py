@@ -24,12 +24,15 @@ def is_ascii(text):
     return True
 
 def filter_channel(stream):
-    if 'arcana' in stream['title'].lower():
+    title = stream['title'].lower()
+    if 'arcana' in title or 'free' in title:
         return True
     
     channel = stream["user_name"].lower()
-    impersonated = ['arteezy', 'zai', 'admiralbulldog', 'eternalenvyy']
-    return any(channel.startswith(stream) and channel != stream for stream in impersonated)
+    impersonated = ['arteezy', 'zai', 'admiralbulldog', 'eternalenvyy',
+                    'sumayyl', 'gorgc', 'wagamamatv']
+    return any((channel.startswith(username) or username in title)
+               and channel != username for username in impersonated)
 
 def _get_top_channels_raw(url):
     headers = {'Client-ID': clientID}
