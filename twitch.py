@@ -30,7 +30,7 @@ def filter_channel(stream):
     
     channel = stream["user_name"].lower()
     impersonated = ['arteezy', 'zai', 'admiralbulldog', 'eternalenvyy',
-                    'sumayyl', 'gorgc', 'wagamamatv']
+                    'sumayyl', 'gorgc', 'wagamamatv', 'Topsonous']
     return any((channel.startswith(username) or username in title)
                and channel != username for username in impersonated)
 
