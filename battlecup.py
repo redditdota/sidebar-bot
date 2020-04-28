@@ -6,9 +6,9 @@ import calendar
 posttitle = "Find Your Battle Cup Party"
 
 postbody = """
-This thread is dedicated for you guys to find a party for weekly Battle Cup.
+This thread is dedicated for you all to find a party for weekly Battle Cup.
 ____
-**During the event all posts about finding/forming a team will be removed to avoid spam.** 
+**During the event all posts about finding/forming a team will be removed to avoid spam.**
 
 **This thread is only for people looking for a team, if you are forming a team simply reply to or PM anyone looking for a team that suits what you're looking for and invite them.**
 
@@ -20,9 +20,9 @@ ____
 
 Suggested Format:
 
-**Steam ID:** 
+**Steam ID:**
 
-**Server:** 
+**Server:**
 
 **Tier:** What tier do you want to play on?
 
@@ -32,14 +32,14 @@ Suggested Format:
 
 ---
 
-If you start to love playing with a premade and in a competitive setting please check out our friends at https://www.reddit.com/r/compDota2 and/or https://playerbase.gg
+If you start to love playing with a premade and in a competitive setting please check out our friends at https://www.reddit.com/r/compDota2
 
 Have fun!
 
 """
 
 def createPost(r, subname):
-    title = posttitle + " | " + calendar.month_name[datetime.datetime.today().month] + " " + datetime.datetime.today().day
+    title = posttitle + " | " + calendar.month_name[datetime.datetime.today().month] + " " + str(datetime.datetime.today().day)
     submission = r.subreddit(subname).submit(title, selftext=postbody)
     submission.disable_inbox_replies()
     submission.mod.flair(text="Other")

@@ -238,11 +238,16 @@ def artifact_cleanup_stupid_questions_thread():
     stupidquestions.artifact_unstickyPost(r)
 
 def create_battle_cup_thread():
-    battlecup.createPost(r, "dota2")
+    try:
+        battlecup.createPost(r, "dota2")
+    except Exception:
+        pass
 
 def cleanup_battle_cup_thread():
-    stupidquestions.unstickyPost(r)
-
+    try:
+        stupidquestions.unstickyPost(r)
+    except Exception:
+        pass
 
 if __name__ == "__main__":
     print("hello")
@@ -256,8 +261,8 @@ if __name__ == "__main__":
     #schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
     #schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
 
-    #schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
-    #schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)
+    schedule.every().saturday.at("3:00").do(create_battle_cup_thread)
+    schedule.every().sunday.at("3:00").do(cleanup_battle_cup_thread)
 
     while True:
         schedule.run_pending()
