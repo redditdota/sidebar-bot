@@ -1,7 +1,6 @@
 from datetime import datetime
 import requests
 import os
-import chess
 
 import configparser
 
@@ -27,7 +26,7 @@ def filter_channel(stream):
     title = stream['title'].lower()
     if 'arcana' in title or 'free' in title:
         return True
-    
+
     channel = stream["user_name"].lower()
     impersonated = [
         'arteezy',

@@ -5,7 +5,6 @@ import json
 import os
 
 import configparser
-import chess
 
 config = configparser.ConfigParser()
 config.read("config.txt")
@@ -16,9 +15,6 @@ from oauth2client.client import OAuth2WebServerFlow
 
 dotaKey = config.get("config", "DOTA_GOOGLE_KEY")
 dotaCalendarId = config.get("config", "DOTA_CALENDAR_ID")
-
-if chess.useChessSidebar:
-    dotaCalendarId = "2dpm3qirch3d7mmae04aojnu48@group.calendar.google.com"
 
 artifactKey = config.get("config", "ARTIFACT_GOOGLE_KEY")
 artifactCalendarId = config.get("config", "ARTIFACT_CALENDAR_ID")
