@@ -188,6 +188,7 @@ def update_flairs(sub):
 def do_update_dota_sidebar(sidebar):
     #sidebar = update_prize_pool(sidebar)
     sidebar = update_streamers(sidebar)
+    sidebar = update_matches(sidebar)
     sidebar = update_events(sidebar)
 
     return sidebar
