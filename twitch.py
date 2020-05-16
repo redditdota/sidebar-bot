@@ -50,6 +50,9 @@ def _get_top_channels_raw(url):
     dota_channels = r.json()
     top_dota_channels = []
 
+    if 'data' not in dota_channels:
+        return top_dota_channels
+
     for stream in dota_channels['data']:
         if len(top_dota_channels) >= 5:
             break
@@ -81,7 +84,6 @@ def _get_top_channels_raw(url):
 
 
 def _get_top_channels(url):
-    return ""
     updated_matches = ""
     for channel in _get_top_channels_raw(url):
         updated_matches += ">>>#[" + channel["status"] + \
