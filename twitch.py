@@ -81,6 +81,7 @@ def _get_top_channels_raw(url):
 
 
 def _get_top_channels(url):
+    return ""
     updated_matches = ""
     for channel in _get_top_channels_raw(url):
         updated_matches += ">>>#[" + channel["status"] + \
