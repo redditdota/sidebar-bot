@@ -8,6 +8,7 @@ config = configparser.ConfigParser()
 config.read("config.txt")
 
 clientID = config.get("config", "TWITCH_CLIENT_ID")
+clientSecret = config.get("config", "TWITCH_SECRET_ID")
 
 def is_ascii(text):
     if isinstance(text, unicode):
@@ -43,7 +44,14 @@ def filter_channel(stream):
                and channel != username for username in impersonated)
 
 def _get_top_channels_raw(url):
-    headers = {'Client-ID': clientID}
+    oauthURL = 'https://id.twitch.tv/oauth2/token'
+    data = {'client_id': clientID, 'client_secret': clientSecret, 'grant_type': 'client_credentials'}
+    r = requests.post(oauthURL, data=data)
+
+    access_token = r.json()['access_token']
+
+
+    headers = {'Client-ID': clientID, 'Authorization': 'Bearer ' + access_token}
 
     r = requests.get(url, headers=headers)
 
