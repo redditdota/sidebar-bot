@@ -39,6 +39,7 @@ def filter_channel(stream):
         'wagamamatv',
         'topsonous',
         'miracle_doto',
+        'bigdaddy',
     ]
     return any((channel.startswith(username) or username in title)
                and channel != username for username in impersonated)
