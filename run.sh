@@ -3,5 +3,5 @@ echo "Password: "
 read -s PASSWORD
 while true
 do
-    python3 update_sidebar.py $PASSWORD
+    python3 -u update_sidebar.py $PASSWORD | tee -a output.log
 done
