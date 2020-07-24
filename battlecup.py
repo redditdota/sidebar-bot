@@ -3,34 +3,28 @@ import praw
 import datetime
 import calendar
 
-posttitle = "Find Your Battle Cup Party"
+posttitle = "Find a Party"
 
 postbody = """
-This thread is dedicated for you all to find a party for weekly Battle Cup.
-____
-**During the event all posts about finding/forming a team will be removed to avoid spam.**
-
-**This thread is only for people looking for a team, if you are forming a team simply reply to or PM anyone looking for a team that suits what you're looking for and invite them.**
-
-If you've already found a team please edit your post saying so or delete your post so no one will keep contacting you.
-
-##Sort by new to find people who just posted and is looking for a party.
+This thread is dedicated to recruitment for the weekly battle cup, Aghanim's Labyrinth, guilds, etc
 
 ____
 
 Suggested Format:
 
-**Steam ID:**
+**Steam ID / Guild Name & Tag:**
 
 **Server:**
 
-**Tier:** What tier do you want to play on?
+**Language:**
 
-**Preferred Role** What positions you're comfortable playing with.
+**Rank/Tier:**
 
-**Other Information** Any other info that you would like your party mates to know
+**Preferred Heroes/Role:**
 
----
+**Other Information:** Any other info that you would like your new mates to know
+
+____
 
 If you start to love playing with a premade and in a competitive setting please check out our friends at https://www.reddit.com/r/compDota2
 
