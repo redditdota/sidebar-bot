@@ -3,13 +3,9 @@ import praw
 import datetime
 import calendar
 
-posttitle = "Find a Party"
+posttitle = "Guild Recruitment Megathread"
 
 postbody = """
-This thread is dedicated to recruitment for the weekly battle cup, Aghanim's Labyrinth, guilds, etc
-
-____
-
 Suggested Format:
 
 **Steam ID / Guild Name & Tag:**
@@ -18,15 +14,9 @@ Suggested Format:
 
 **Language:**
 
-**Rank/Tier:**
+**Required Rank:**
 
-**Preferred Heroes/Role:**
-
-**Other Information:** Any other info that you would like your new mates to know
-
-____
-
-If you start to love playing with a premade and in a competitive setting please check out our friends at https://www.reddit.com/r/compDota2
+**What makes your guild cool, unique, fun, etc:**
 
 Have fun!
 
