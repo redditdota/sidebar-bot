@@ -1,1 +1,1 @@
-##/r/Dota2 Sidebar bot
+## /r/Dota2 Sidebar bot
