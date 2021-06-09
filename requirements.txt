@@ -19,5 +19,5 @@ schedule==0.6.0
 six==1.13.0
 update-checker==0.16
 uritemplate==3.0.0
-urllib3==1.25.8
+urllib3==1.26.5
 websocket-client==0.56.0
