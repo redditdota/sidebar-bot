@@ -29,6 +29,11 @@ def get_gosu_matches():
 
         isLive = match["isLive"]
         matchUrl = match["pageUrl"]
+        matchReq = requests.get(matchUrl)
+
+        # filter out bad matches
+        if not matchReq:
+            continue
 
         team1 = match["firstOpponent"]["shortName"]
         re1 = match["firstOpponent"]["country"]["countryCode"]
