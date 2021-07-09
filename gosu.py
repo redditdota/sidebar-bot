@@ -10,11 +10,18 @@ config.read("config.txt")
 
 apiKey = config.get("config", "GOSU_API_KEY")
 
+
 def get_gosu_matches():
 
-    url = "http://www.gosugamers.net/api/matches?apiKey=" + apiKey + "&game=dota2&maxresults=50"
+    url = (
+        "http://www.gosugamers.net/api/matches?apiKey="
+        + apiKey
+        + "&game=dota2&maxresults=50"
+    )
 
-    nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
+    nowdate = datetime.datetime.fromtimestamp(
+        float(datetime.datetime.utcnow().strftime("%s"))
+    )
 
     r = requests.get(url)
 
@@ -52,10 +59,16 @@ def get_gosu_matches():
             if dt == None:
                 continue
 
-            gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
-            gamedate = gamedate - datetime.timedelta(hours = 1)
+            gamedate = datetime.datetime.fromtimestamp(
+                float(dateutil.parser.parse(dt).strftime("%s"))
+            )
+            gamedate = gamedate - datetime.timedelta(hours=1)
             delta = gamedate - nowdate
-            days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
+            days, hours, mins = (
+                delta.days,
+                delta.seconds // 3600,
+                delta.seconds // 60 % 60,
+            )
 
             if str(days) != "0":
                 time = str(days) + "d " + str(hours) + "h"
@@ -64,16 +77,28 @@ def get_gosu_matches():
             else:
                 time = str(mins) + "m"
 
-        sidebar_matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2":
-            re2.lower(), "tournament": tournament, "time": time, "link": matchUrl})
+        sidebar_matches.append(
+            {
+                "team1": team1,
+                "team2": team2,
+                "region1": re1.lower(),
+                "region2": re2.lower(),
+                "tournament": tournament,
+                "time": time,
+                "link": matchUrl,
+            }
+        )
 
     return sidebar_matches
 
+
 def get_jd_matches():
     url = "https://secure.gamesports.net/api/?action=reddit_dota2_matches_upcoming"
-    headers = {'user-agent': 'dota2-sidebar-match-ticker'}
+    headers = {"user-agent": "dota2-sidebar-match-ticker"}
 
-    nowdate  = datetime.datetime.fromtimestamp(float(datetime.datetime.utcnow().strftime('%s')))
+    nowdate = datetime.datetime.fromtimestamp(
+        float(datetime.datetime.utcnow().strftime("%s"))
+    )
 
     r = requests.get(url, headers=headers)
 
@@ -113,10 +138,16 @@ def get_jd_matches():
             time = "LIVE"
         else:
             dt = match["match_time"]
-            gamedate = datetime.datetime.fromtimestamp(float(dateutil.parser.parse(dt).strftime('%s')))
-            gamedate = gamedate - datetime.timedelta(hours = 3)
+            gamedate = datetime.datetime.fromtimestamp(
+                float(dateutil.parser.parse(dt).strftime("%s"))
+            )
+            gamedate = gamedate - datetime.timedelta(hours=3)
             delta = gamedate - nowdate
-            days, hours, mins = delta.days, delta.seconds // 3600, delta.seconds // 60 % 60
+            days, hours, mins = (
+                delta.days,
+                delta.seconds // 3600,
+                delta.seconds // 60 % 60,
+            )
 
             if str(days) != "0":
                 time = str(days) + "d " + str(hours) + "h"
@@ -125,12 +156,23 @@ def get_jd_matches():
             else:
                 time = str(mins) + "m"
 
-        sidebar_matches.append({"team1": str(team1), "team2": str(team2), "region1": re1.lower(), "region2":
-            re2.lower(), "tournament": tournament, "time": time, "link": matchUrl, "tournament_url": tournament_url})
+        sidebar_matches.append(
+            {
+                "team1": str(team1),
+                "team2": str(team2),
+                "region1": re1.lower(),
+                "region2": re2.lower(),
+                "tournament": tournament,
+                "time": time,
+                "link": matchUrl,
+                "tournament_url": tournament_url,
+            }
+        )
 
     return sidebar_matches
 
-#def fetch_match_tables():
+
+# def fetch_match_tables():
 #    global tables
 #
 #    gosu = "http://www.gosugamers.net/dota2/gosubet"
@@ -139,7 +181,7 @@ def get_jd_matches():
 #
 #    tables = soup.findAll("table", attrs={'class': 'simple matches'})
 #
-#def scrap_live_match(table):
+# def scrap_live_match(table):
 #    global count
 #
 #    rows = table.findAll('tr')
@@ -163,7 +205,7 @@ def get_jd_matches():
 #        matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2": re2.lower(), "time": "LIVE", "link": link})
 #        count += 1
 #
-#def scrap_upcoming_match(table):
+# def scrap_upcoming_match(table):
 #    global count
 #
 #    rows = table.findAll('tr')
@@ -190,11 +232,12 @@ def get_jd_matches():
 #        matches.append({"team1": team1, "team2": team2, "region1": re1.lower(), "region2": re2.lower(), "time": time, "link": link})
 #        count += 1
 
+
 def format_matches(sidebar_matches):
     formatted_matches = []
 
     for match in sidebar_matches:
-        sidebarmatch = "";
+        sidebarmatch = ""
 
         sidebarmatch += ">>>[~~" + match["tournament"] + "~~\n"
         sidebarmatch += "~~" + match["time"] + "~~\n"
@@ -211,6 +254,6 @@ def format_matches(sidebar_matches):
 
 def get_matches():
     matches = get_gosu_matches()
-    #matches = get_jd_matches()
+    # matches = get_jd_matches()
 
     return format_matches(matches)
