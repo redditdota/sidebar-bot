@@ -15,6 +15,7 @@ import stupidquestions
 import battlecup
 import countdown
 import redesign
+import discussions
 
 import configparser
 
@@ -245,10 +246,19 @@ def create_battle_cup_thread():
         pass
 
 def cleanup_battle_cup_thread():
-    try:
-        stupidquestions.unstickyPost(r)
-    except Exception:
-        pass
+    stupidquestions.unstickyPost(r)
+
+def create_hero_discussion_thread():
+    hero_id = int(config.get("config", "HERO_DISCUSSION_ID"))
+    discussions.create_post(r, "dota2", hero_id)
+    config.set("config", "HERO_DISCUSSION_ID", str(discussions.next_hero_index(int(hero_id))))
+
+    with open("config.txt", 'w') as configfile:
+        config.write(configfile)
+
+
+def cleanup_hero_discussion_thread():
+    stupidquestions.unstickyPost(r)
 
 if __name__ == "__main__":
     print("hello")
@@ -258,6 +268,9 @@ if __name__ == "__main__":
 
     schedule.every().monday.at("16:00").do(dota_create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(dota_cleanup_stupid_questions_thread)
+
+    schedule.every().tuesday.at("17:00").do(create_hero_discussion_thread)
+    schedule.every().wednesday.at("17:00").do(cleanup_hero_discussion_thread)
 
     #schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
     #schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)

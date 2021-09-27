@@ -41,8 +41,8 @@ def createPost(r, subname, num):
 
 def unstickyPost(r):
     submissions = r.redditor("VRCbot").submissions.new()
-    submission = submissions.next()
-    submission.mod.sticky(state=False)
+    submission = list(submissions)
+    submission[0].mod.sticky(state=False)
 
 def artifact_createPost(r, subname, num):
     threadnum = ""
