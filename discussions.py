@@ -31,7 +31,7 @@ def create_post(r, subname, num):
 	body = post_body.format(hero_name = hero['hero'], link = hero['link'], comments = "{comments}")
 
 	submission = r.subreddit(subname).submit(title, selftext=body)
-	submission.mod.flair(text="Discussion")
+	submission.mod.flair(text="Discussion", css_class="discussion")
 	submission.mod.sticky()
 
 	top_level_comments = []
