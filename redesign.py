@@ -4,10 +4,8 @@ import gosu
 
 MAX_LENGTH = 20
 
-ABBREVIATIONS = {
-    "Season " : "S",
-    "Qualifier" : "Qual"
-}
+ABBREVIATIONS = {"Season ": "S", "Qualifier": "Qual"}
+
 
 def get_top_channels(sub):
     text = "Twitch | 👁 | Streamer \n"
@@ -20,7 +18,7 @@ def get_top_channels(sub):
     for channel in channels:
         status = channel["status"]
         if "|" in status:
-            status = status[:status.index("|")]
+            status = status[: status.index("|")]
         if len(status) > MAX_LENGTH:
             status = status[:MAX_LENGTH] + "..."
 
@@ -66,4 +64,3 @@ def update_sidebar(sub):
                 text = get_matches()
                 if len(text) > 0:
                     w.mod.update(text=text)
-

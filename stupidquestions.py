@@ -21,13 +21,14 @@ Ready the questions! Feel free to ask anything (no matter how seemingly moronic)
 > There's no desolator in this game yet.
 """
 
+
 def createPost(r, subname, num):
     threadnum = ""
-    if(num[-1] == "1"):
+    if num[-1] == "1":
         threadnum = num + "st"
-    elif(num[-1] == "2"):
+    elif num[-1] == "2":
         threadnum = num + "nd"
-    elif(num[-1] == "3"):
+    elif num[-1] == "3":
         threadnum = num + "rd"
     else:
         threadnum = num + "th"
@@ -36,21 +37,23 @@ def createPost(r, subname, num):
     submission = r.subreddit(subname).submit(title, selftext=postbody)
     submission.disable_inbox_replies()
     submission.mod.flair(text="Question")
-    submission.mod.suggested_sort('new')
+    submission.mod.suggested_sort("new")
     submission.mod.sticky()
+
 
 def unstickyPost(r):
     submissions = r.redditor("VRCbot").submissions.new()
     submission = list(submissions)
     submission[0].mod.sticky(state=False)
 
+
 def artifact_createPost(r, subname, num):
     threadnum = ""
-    if(num[-1] == "1"):
+    if num[-1] == "1":
         threadnum = num + "st"
-    elif(num[-1] == "2"):
+    elif num[-1] == "2":
         threadnum = num + "nd"
-    elif(num[-1] == "3"):
+    elif num[-1] == "3":
         threadnum = num + "rd"
     else:
         threadnum = num + "th"
@@ -59,8 +62,9 @@ def artifact_createPost(r, subname, num):
     submission = r.subreddit(subname).submit(title, selftext=artifact_postbody)
     submission.disable_inbox_replies()
     submission.mod.flair(text="Question")
-    submission.mod.suggested_sort('new')
+    submission.mod.suggested_sort("new")
     submission.mod.sticky()
+
 
 def artifact_unstickyPost(r):
     submissions = r.redditor("VRCbot").submissions.new()

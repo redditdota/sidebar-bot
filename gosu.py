@@ -66,7 +66,7 @@ def get_gosu_matches():
             gamedate = datetime.datetime.fromtimestamp(
                 float(dateutil.parser.parse(dt).strftime("%s"))
             )
-            #gamedate = gamedate - datetime.timedelta(hours=1)
+            # gamedate = gamedate - datetime.timedelta(hours=1)
             delta = gamedate - nowdate
             days, hours, mins = (
                 delta.days,

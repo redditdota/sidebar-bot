@@ -1,8 +1,9 @@
 from datetime import *
 
+
 def get_countdown():
     today = date.today()
-    release = date(2018,11,28)
+    release = date(2018, 11, 28)
     days = int((release - today).days)
 
     if days == 3:
