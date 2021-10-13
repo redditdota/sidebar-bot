@@ -4,6 +4,7 @@ import requests
 import os
 
 import configparser
+import logging
 
 config = configparser.ConfigParser()
 config.read("config.txt")
@@ -18,14 +19,17 @@ def get_gosu_matches():
         + apiKey
         + "&game=dota2&maxresults=50"
     )
+    r = requests.get(url)
+
+    if not r.ok:
+        logging.error("Gosu API Down!")
+        return []
+
+    matches = r.json()["matches"]
 
     nowdate = datetime.datetime.fromtimestamp(
         float(datetime.datetime.utcnow().strftime("%s"))
     )
-
-    r = requests.get(url)
-
-    matches = r.json()["matches"]
 
     sidebar_matches = []
 
