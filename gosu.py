@@ -27,9 +27,7 @@ def get_gosu_matches():
 
     matches = r.json()["matches"]
 
-    nowdate = datetime.datetime.fromtimestamp(
-        float(datetime.datetime.utcnow().strftime("%s"))
-    )
+    nowdate = datetime.datetime.now(datetime.timezone.utc)
 
     sidebar_matches = []
 
@@ -63,9 +61,7 @@ def get_gosu_matches():
             if dt == None:
                 continue
 
-            gamedate = datetime.datetime.fromtimestamp(
-                float(dateutil.parser.parse(dt).strftime("%s"))
-            )
+            gamedate = dateutil.parser.parse(dt)
             # gamedate = gamedate - datetime.timedelta(hours=1)
             delta = gamedate - nowdate
             days, hours, mins = (
