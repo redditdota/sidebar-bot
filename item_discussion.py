@@ -7,6 +7,7 @@ items = json.load(open("items.json"))
 top_level = [
     "Core Heroes",
     "Situational Purchases",
+    "Strong Versus",
     "Tips and Tricks",
 ]
 

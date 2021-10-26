@@ -24,6 +24,10 @@
         "link": "/wiki/Hoodwink"
     },
     {
+        "hero": "Magnus",
+        "link": "/wiki/Magnus"
+    },
+    {
         "hero": "Abaddon",
         "link": "/wiki/Abaddon"
     },
@@ -290,10 +294,6 @@
     {
         "hero": "Lion",
         "link": "/wiki/Lion"
-    },
-    {
-        "hero": "Magnus",
-        "link": "/wiki/Magnus"
     },
     {
         "hero": "Tidehunter",
