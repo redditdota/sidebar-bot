@@ -11,6 +11,8 @@ top_level = [
     "Hero Counters",
     "Aghanim's Scepter/Shard",
     "Tips and Tricks",
+    "Lore",
+    "Favorite Cosmetics"
 ]
 top_level_comment_body = "**{text}**"
 top_level_comment = "* [{comment}]({link})\n"
