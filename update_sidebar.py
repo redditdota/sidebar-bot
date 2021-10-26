@@ -26,7 +26,6 @@ config.read("config.txt")
 r = None
 password = None
 
-
 def login():
     global r
     global password

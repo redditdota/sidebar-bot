@@ -69,7 +69,8 @@ def create_post(r, subname, num):
 def get_prev_posts(r):
     posts = []
     iterations = 0
-    for post in r.redditor("VRCbot").submissions.new():
+
+    for post in r.redditor('VRCbot').submissions.new():
         if "Hero Discussion" in post.title:
             posts.append((post.title, post.url))
 
@@ -84,6 +85,6 @@ def get_prev_posts(r):
     post_body = ""
 
     for post in posts:
-        post_body += template.format(title=post[0], title=post[1])
-    
+        post_body += template.format(title=post[0], url=post[1])
+
     return post_body
