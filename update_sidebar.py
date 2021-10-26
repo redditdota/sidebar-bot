@@ -16,6 +16,7 @@ import battlecup
 import countdown
 import redesign
 import discussions
+import item_discussion
 
 import configparser
 
@@ -329,10 +330,21 @@ def create_hero_discussion_thread():
     with open("config.txt", "w") as configfile:
         config.write(configfile)
 
-
 def cleanup_hero_discussion_thread():
     stupidquestions.unstickyPost(r)
 
+def create_item_discussion_thread():
+    item_id = int(config.get("config", "ITEM_DISCUSSION_ID"))
+    item_discussion.create_post(r, "dota2", item_id)
+    config.set(
+        "config", "ITEM_DISCUSSION_ID", str(item_discussion.next_item_index(int(item_id)))
+    )
+
+    with open("config.txt", "w") as configfile:
+        config.write(configfile)
+
+def cleanup_item_discussion_thread():
+    stupidquestions.unstickyPost(r)
 
 if __name__ == "__main__":
     print("hello")
@@ -345,6 +357,9 @@ if __name__ == "__main__":
 
     schedule.every().tuesday.at("17:00").do(create_hero_discussion_thread)
     schedule.every().wednesday.at("17:00").do(cleanup_hero_discussion_thread)
+
+    schedule.every().thursday.at("17:00").do(create_item_discussion_thread)
+    schedule.every().friday.at("17:00").do(cleanup_item_discussion_thread)
 
     # schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
     # schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
