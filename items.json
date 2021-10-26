@@ -4,6 +4,10 @@
     "link": "/wiki/Orb_of_Corrosion"
   },
   {
+    "item": "Mage Slayer",
+    "link": "/wiki/Mage_Slayer"
+  },
+  {
     "item": "Abyssal Blade",
     "link": "/wiki/Abyssal_Blade"
   },
@@ -86,10 +90,6 @@
   {
     "item": "Butterfly",
     "link": "/wiki/Butterfly"
-  },
-  {
-    "item": "Mage Slayer",
-    "link": "/wiki/Mage_Slayer"
   },
   {
     "item": "Ghost Scepter",
