@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-import time, threading
+import time
 import datetime
 
 import praw
@@ -15,7 +15,7 @@ import stupidquestions
 import battlecup
 import countdown
 import redesign
-import discussions
+import hero_discussion
 import item_discussion
 
 import configparser
@@ -271,8 +271,6 @@ def update_sidebar():
 
     # update_flairs("dota2")
 
-    # threading.Timer(30, update_sidebar).start()
-
 
 def dota_create_stupid_questions_thread():
     stupidquestions.createPost(r, "dota2", config.get("config", "STUPID_QUESTIONS_ID"))
@@ -311,8 +309,8 @@ def artifact_cleanup_stupid_questions_thread():
 def create_battle_cup_thread():
     try:
         battlecup.createPost(r, "dota2")
-    except Exception:
-        pass
+    except Exception as e:
+        print(e)
 
 
 def cleanup_battle_cup_thread():
@@ -320,14 +318,10 @@ def cleanup_battle_cup_thread():
 
 
 def create_hero_discussion_thread():
-    hero_id = int(config.get("config", "HERO_DISCUSSION_ID"))
-    discussions.create_post(r, "dota2", hero_id)
-    config.set(
-        "config", "HERO_DISCUSSION_ID", str(discussions.next_hero_index(int(hero_id)))
-    )
-
-    with open("config.txt", "w") as configfile:
-        config.write(configfile)
+    """ Create the weekly hero discussion. No longer uses config file, instead counts previous threads.
+    """
+    hero_id = hero_discussion.count_prev_posts(r)
+    hero_discussion.create_post(r, hero_id)
 
 def cleanup_hero_discussion_thread():
     stupidquestions.unstickyPost(r)
@@ -335,15 +329,14 @@ def cleanup_hero_discussion_thread():
 def create_item_discussion_thread():
     item_id = int(config.get("config", "ITEM_DISCUSSION_ID"))
     item_discussion.create_post(r, "dota2", item_id)
-    config.set(
-        "config", "ITEM_DISCUSSION_ID", str(item_discussion.next_item_index(int(item_id)))
-    )
+    config.set("config", "ITEM_DISCUSSION_ID", str(item_discussion.next_item_index(item_id)))
 
     with open("config.txt", "w") as configfile:
         config.write(configfile)
 
 def cleanup_item_discussion_thread():
     stupidquestions.unstickyPost(r)
+
 
 if __name__ == "__main__":
     print("hello")

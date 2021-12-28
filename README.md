@@ -8,12 +8,11 @@ Despite being called the sidebar bot, this repo actually does all of the followi
     * Current played pro matches: `gosu.py`
     * Countdown until TI: `countdown.py`
     * Track TI prize pool: `prize_pool.py`
-    * Update side
 
 * Post weekly scheduled posts:
     * Battle cup: `battlecup.py`
     * Stupid questions: `stupidquestions.py`
-    * Hero discussion: `discussions.py`
+    * Hero discussion: `hero_discussions.py`
     * Item discussion: `item_discussion.py`
 
 * Ping discord when there is new modmail: `modmail.py`
@@ -36,7 +35,6 @@ dota_email = ?
 dota_google_key = ?
 gosu_api_key = ?
 stupid_questions_id = a number
-hero_discussion_id = a number
 artifact_stupid_questions_id = a number
 twitch_client_id =
 twitch_secret_id =

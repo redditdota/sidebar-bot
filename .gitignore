@@ -3,3 +3,7 @@ config.txt
 alreadyseen.json
 nohup.txt
 env/
+venv/
+.idea
+creds*
+
