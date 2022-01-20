@@ -15,7 +15,9 @@ post_body = """
 Leave comments under these top level comments for more specific discussion about the hero
 
 {comments}
+"""
 
+temp = """
 &nbsp;
 
 #### Previous Hero Discussions
@@ -49,7 +51,7 @@ def get_hero(num):
 def create_post(r, num):
     hero = get_hero(num)
     title = post_title.format(hero_name=hero["hero"], date=datetime.datetime.now().strftime("%B %d, %Y"))
-    body = post_body.format(hero_name=hero["hero"], link=hero["link"], comments="{comments}", previous=get_prev_posts(r))
+    body = post_body.format(hero_name=hero["hero"], link=hero["link"], comments="{comments}")
 
     submission = r.subreddit(SUBREDDIT).submit(title, selftext=body)
     submission.mod.flair(text="Discussion", css_class="discussion")
@@ -70,7 +72,7 @@ def create_post(r, num):
     x_post_title = "[X-Post from /r/Dota2] " + title
 
     time.sleep(5)
-    r.subreddit("truedota2").submit(x_post_title, url=submission.url)
+    r.subreddit("truedota2").submit(x_post_title, selftext=submission.url)
     time.sleep(5)
     r.subreddit("learndota2").submit(x_post_title, url=submission.url)
 

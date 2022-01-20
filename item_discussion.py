@@ -61,11 +61,11 @@ def create_post(r, subname, num):
         )
 
     body = body.format(comments=formatted_comment)
-    submission.edit(body) 
+    submission.edit(body)
 
     x_post_title = "[X-Post from /r/Dota2] " + title
 
     time.sleep(5)
-    r.subreddit("truedota2").submit(x_post_title, url=submission.url)
+    r.subreddit("truedota2").submit(x_post_title, selftext=submission.url)
     time.sleep(5)
     r.subreddit("learndota2").submit(x_post_title, url=submission.url)
