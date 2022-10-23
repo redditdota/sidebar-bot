@@ -71,10 +71,10 @@ def create_post(r, num):
 
     x_post_title = "[X-Post from /r/Dota2] " + title
 
-    time.sleep(5)
+    time.sleep(8)
     r.subreddit("truedota2").submit(x_post_title, selftext=submission.url)
-    time.sleep(5)
-    r.subreddit("learndota2").submit(x_post_title, url=submission.url)
+    #time.sleep(20)
+    #r.subreddit("learndota2").submit(x_post_title, url=submission.url)
 
 
 def count_prev_posts(r):
