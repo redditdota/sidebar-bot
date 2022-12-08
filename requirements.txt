@@ -7,7 +7,7 @@
 
 -i https://pypi.org/simple
 cachetools==4.2.4
-certifi==2021.10.8
+certifi==2022.12.7
 chardet==4.0.0
 charset-normalizer==2.0.7; python_version >= '3'
 google-api-core==2.2.1
