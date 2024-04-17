@@ -1,490 +1,490 @@
 [
     {
         "hero": "Lina",
-        "link": "/wiki/Lina"
+        "link": "/Lina"
     },
     {
         "hero": "Treant Protector",
-        "link": "/wiki/Treant_Protector"
+        "link": "/Treant_Protector"
     },
     {
         "hero": "Spirit Breaker",
-        "link": "/wiki/Spirit_Breaker"
+        "link": "/Spirit_Breaker"
     },
     {
         "hero": "Ursa",
-        "link": "/wiki/Ursa"
+        "link": "/Ursa"
     },
     {
         "hero": "Drow Ranger",
-        "link": "/wiki/Drow_Ranger"
+        "link": "/Drow_Ranger"
     },
     {
         "hero": "Hoodwink",
-        "link": "/wiki/Hoodwink"
+        "link": "/Hoodwink"
     },
     {
         "hero": "Magnus",
-        "link": "/wiki/Magnus"
+        "link": "/Magnus"
     },
     {
         "hero": "Abaddon",
-        "link": "/wiki/Abaddon"
+        "link": "/Abaddon"
     },
     {
         "hero": "Huskar",
-        "link": "/wiki/Huskar"
+        "link": "/Huskar"
     },
     {
         "hero": "Mars",
-        "link": "/wiki/Mars"
+        "link": "/Mars"
     },
     {
         "hero": "Wraith King",
-        "link": "/wiki/Wraith_King"
+        "link": "/Wraith_King"
     },
     {
         "hero": "Shadow Demon",
-        "link": "/wiki/Shadow_Demon"
+        "link": "/Shadow_Demon"
     },
     {
         "hero": "Nature's Prophet",
-        "link": "/wiki/Nature%27s_Prophet"
+        "link": "/Nature%27s_Prophet"
     },
     {
         "hero": "Chen",
-        "link": "/wiki/Chen"
+        "link": "/Chen"
     },
     {
         "hero": "Lone Druid",
-        "link": "/wiki/Lone_Druid"
+        "link": "/Lone_Druid"
     },
     {
         "hero": "Windranger",
-        "link": "/wiki/Windranger"
+        "link": "/Windranger"
     },
     {
         "hero": "Legion Commander",
-        "link": "/wiki/Legion_Commander"
+        "link": "/Legion_Commander"
     },
     {
         "hero": "Visage",
-        "link": "/wiki/Visage"
+        "link": "/Visage"
     },
     {
         "hero": "Monkey King",
-        "link": "/wiki/Monkey_King"
+        "link": "/Monkey_King"
     },
     {
         "hero": "Disruptor",
-        "link": "/wiki/Disruptor"
+        "link": "/Disruptor"
     },
     {
         "hero": "Puck",
-        "link": "/wiki/Puck"
+        "link": "/Puck"
     },
     {
         "hero": "Sniper",
-        "link": "/wiki/Sniper"
+        "link": "/Sniper"
     },
     {
         "hero": "Tiny",
-        "link": "/wiki/Tiny"
+        "link": "/Tiny"
     },
     {
         "hero": "Doom",
-        "link": "/wiki/Doom"
+        "link": "/Doom"
     },
     {
         "hero": "Phantom Lancer",
-        "link": "/wiki/Phantom_Lancer"
+        "link": "/Phantom_Lancer"
     },
     {
         "hero": "Venomancer",
-        "link": "/wiki/Venomancer"
+        "link": "/Venomancer"
     },
     {
         "hero": "Shadow Shaman",
-        "link": "/wiki/Shadow_Shaman"
+        "link": "/Shadow_Shaman"
     },
     {
         "hero": "Dark Seer",
-        "link": "/wiki/Dark_Seer"
+        "link": "/Dark_Seer"
     },
     {
         "hero": "Ember Spirit",
-        "link": "/wiki/Ember_Spirit"
+        "link": "/Ember_Spirit"
     },
     {
         "hero": "Dragon Knight",
-        "link": "/wiki/Dragon_Knight"
+        "link": "/Dragon_Knight"
     },
     {
         "hero": "Terrorblade",
-        "link": "/wiki/Terrorblade"
+        "link": "/Terrorblade"
     },
     {
         "hero": "Clinkz",
-        "link": "/wiki/Clinkz"
+        "link": "/Clinkz"
     },
     {
         "hero": "Earthshaker",
-        "link": "/wiki/Earthshaker"
+        "link": "/Earthshaker"
     },
     {
         "hero": "Earth Spirit",
-        "link": "/wiki/Earth_Spirit"
+        "link": "/Earth_Spirit"
     },
     {
         "hero": "Void Spirit",
-        "link": "/wiki/Void_Spirit"
+        "link": "/Void_Spirit"
     },
     {
         "hero": "Storm Spirit",
-        "link": "/wiki/Storm_Spirit"
+        "link": "/Storm_Spirit"
     },
     {
         "hero": "Juggernaut",
-        "link": "/wiki/Juggernaut"
+        "link": "/Juggernaut"
     },
     {
         "hero": "Bloodseeker",
-        "link": "/wiki/Bloodseeker"
+        "link": "/Bloodseeker"
     },
     {
         "hero": "Broodmother",
-        "link": "/wiki/Broodmother"
+        "link": "/Broodmother"
     },
     {
         "hero": "Phantom Assassin",
-        "link": "/wiki/Phantom_Assassin"
+        "link": "/Phantom_Assassin"
     },
     {
         "hero": "Meepo",
-        "link": "/wiki/Meepo"
+        "link": "/Meepo"
     },
     {
         "hero": "Skywrath Mage",
-        "link": "/wiki/Skywrath_Mage"
+        "link": "/Skywrath_Mage"
     },
     {
         "hero": "Spectre",
-        "link": "/wiki/Spectre"
+        "link": "/Spectre"
     },
     {
         "hero": "Luna",
-        "link": "/wiki/Luna"
+        "link": "/Luna"
     },
     {
         "hero": "Nyx Assassin",
-        "link": "/wiki/Nyx_Assassin"
+        "link": "/Nyx_Assassin"
     },
     {
         "hero": "Lycan",
-        "link": "/wiki/Lycan"
+        "link": "/Lycan"
     },
     {
         "hero": "Invoker",
-        "link": "/wiki/Invoker"
+        "link": "/Invoker"
     },
     {
         "hero": "Chaos Knight",
-        "link": "/wiki/Chaos_Knight"
+        "link": "/Chaos_Knight"
     },
     {
         "hero": "Warlock",
-        "link": "/wiki/Warlock"
+        "link": "/Warlock"
     },
     {
         "hero": "Anti-Mage",
-        "link": "/wiki/Anti-Mage"
+        "link": "/Anti-Mage"
     },
     {
         "hero": "Batrider",
-        "link": "/wiki/Batrider"
+        "link": "/Batrider"
     },
     {
         "hero": "Bristleback",
-        "link": "/wiki/Bristleback"
+        "link": "/Bristleback"
     },
     {
         "hero": "Enchantress",
-        "link": "/wiki/Enchantress"
+        "link": "/Enchantress"
     },
     {
         "hero": "Vengeful Spirit",
-        "link": "/wiki/Vengeful_Spirit"
+        "link": "/Vengeful_Spirit"
     },
     {
         "hero": "Gyrocopter",
-        "link": "/wiki/Gyrocopter"
+        "link": "/Gyrocopter"
     },
     {
         "hero": "Grimstroke",
-        "link": "/wiki/Grimstroke"
+        "link": "/Grimstroke"
     },
     {
         "hero": "Naga Siren",
-        "link": "/wiki/Naga_Siren"
+        "link": "/Naga_Siren"
     },
     {
         "hero": "Keeper of the Light",
-        "link": "/wiki/Keeper_of_the_Light"
+        "link": "/Keeper_of_the_Light"
     },
     {
         "hero": "Witch Doctor",
-        "link": "/wiki/Witch_Doctor"
+        "link": "/Witch_Doctor"
     },
     {
         "hero": "Snapfire",
-        "link": "/wiki/Snapfire"
+        "link": "/Snapfire"
     },
     {
         "hero": "Dark Willow",
-        "link": "/wiki/Dark_Willow"
+        "link": "/Dark_Willow"
     },
     {
         "hero": "Underlord",
-        "link": "/wiki/Underlord"
+        "link": "/Underlord"
     },
     {
         "hero": "Necrophos",
-        "link": "/wiki/Necrophos"
+        "link": "/Necrophos"
     },
     {
         "hero": "Winter Wyvern",
-        "link": "/wiki/Winter_Wyvern"
+        "link": "/Winter_Wyvern"
     },
     {
         "hero": "Medusa",
-        "link": "/wiki/Medusa"
+        "link": "/Medusa"
     },
     {
         "hero": "Outworld Destroyer",
-        "link": "/wiki/Outworld_Destroyer"
+        "link": "/Outworld_Destroyer"
     },
     {
         "hero": "Brewmaster",
-        "link": "/wiki/Brewmaster"
+        "link": "/Brewmaster"
     },
     {
         "hero": "Crystal Maiden",
-        "link": "/wiki/Crystal_Maiden"
+        "link": "/Crystal_Maiden"
     },
     {
         "hero": "Morphling",
-        "link": "/wiki/Morphling"
+        "link": "/Morphling"
     },
     {
         "hero": "Elder Titan",
-        "link": "/wiki/Elder_Titan"
+        "link": "/Elder_Titan"
     },
     {
         "hero": "Night Stalker",
-        "link": "/wiki/Night_Stalker"
+        "link": "/Night_Stalker"
     },
     {
         "hero": "Oracle",
-        "link": "/wiki/Oracle"
+        "link": "/Oracle"
     },
     {
         "hero": "Undying",
-        "link": "/wiki/Undying"
+        "link": "/Undying"
     },
     {
         "hero": "Lion",
-        "link": "/wiki/Lion"
+        "link": "/Lion"
     },
     {
         "hero": "Tidehunter",
-        "link": "/wiki/Tidehunter"
+        "link": "/Tidehunter"
     },
     {
         "hero": "Bounty Hunter",
-        "link": "/wiki/Bounty_Hunter"
+        "link": "/Bounty_Hunter"
     },
     {
         "hero": "Tusk",
-        "link": "/wiki/Tusk"
+        "link": "/Tusk"
     },
     {
         "hero": "Mirana",
-        "link": "/wiki/Mirana"
+        "link": "/Mirana"
     },
     {
         "hero": "Timbersaw",
-        "link": "/wiki/Timbersaw"
+        "link": "/Timbersaw"
     },
     {
         "hero": "Dazzle",
-        "link": "/wiki/Dazzle"
+        "link": "/Dazzle"
     },
     {
         "hero": "Queen of Pain",
-        "link": "/wiki/Queen_of_Pain"
+        "link": "/Queen_of_Pain"
     },
     {
         "hero": "Viper",
-        "link": "/wiki/Viper"
+        "link": "/Viper"
     },
     {
         "hero": "Slardar",
-        "link": "/wiki/Slardar"
+        "link": "/Slardar"
     },
     {
         "hero": "Ogre Magi",
-        "link": "/wiki/Ogre_Magi"
+        "link": "/Ogre_Magi"
     },
     {
         "hero": "Templar Assassin",
-        "link": "/wiki/Templar_Assassin"
+        "link": "/Templar_Assassin"
     },
     {
         "hero": "Omniknight",
-        "link": "/wiki/Omniknight"
+        "link": "/Omniknight"
     },
     {
         "hero": "Clockwerk",
-        "link": "/wiki/Clockwerk"
+        "link": "/Clockwerk"
     },
     {
         "hero": "Leshrac",
-        "link": "/wiki/Leshrac"
+        "link": "/Leshrac"
     },
     {
         "hero": "Dawnbreaker",
-        "link": "/wiki/Dawnbreaker"
+        "link": "/Dawnbreaker"
     },
     {
         "hero": "Razor",
-        "link": "/wiki/Razor"
+        "link": "/Razor"
     },
     {
         "hero": "Io",
-        "link": "/wiki/Io"
+        "link": "/Io"
     },
     {
         "hero": "Enigma",
-        "link": "/wiki/Enigma"
+        "link": "/Enigma"
     },
     {
         "hero": "Shadow Fiend",
-        "link": "/wiki/Shadow_Fiend"
+        "link": "/Shadow_Fiend"
     },
     {
         "hero": "Techies",
-        "link": "/wiki/Techies"
+        "link": "/Techies"
     },
     {
         "hero": "Arc Warden",
-        "link": "/wiki/Arc_Warden"
+        "link": "/Arc_Warden"
     },
     {
         "hero": "Jakiro",
-        "link": "/wiki/Jakiro"
+        "link": "/Jakiro"
     },
     {
         "hero": "Bane",
-        "link": "/wiki/Bane"
+        "link": "/Bane"
     },
     {
         "hero": "Kunkka",
-        "link": "/wiki/Kunkka"
+        "link": "/Kunkka"
     },
     {
         "hero": "Lich",
-        "link": "/wiki/Lich"
+        "link": "/Lich"
     },
     {
         "hero": "Sand King",
-        "link": "/wiki/Sand_King"
+        "link": "/Sand_King"
     },
     {
         "hero": "Zeus",
-        "link": "/wiki/Zeus"
+        "link": "/Zeus"
     },
     {
         "hero": "Silencer",
-        "link": "/wiki/Silencer"
+        "link": "/Silencer"
     },
     {
         "hero": "Tinker",
-        "link": "/wiki/Tinker"
+        "link": "/Tinker"
     },
     {
         "hero": "Death Prophet",
-        "link": "/wiki/Death_Prophet"
+        "link": "/Death_Prophet"
     },
     {
         "hero": "Centaur Warrunner",
-        "link": "/wiki/Centaur_Warrunner"
+        "link": "/Centaur_Warrunner"
     },
     {
         "hero": "Ancient Apparition",
-        "link": "/wiki/Ancient_Apparition"
+        "link": "/Ancient_Apparition"
     },
     {
         "hero": "Riki",
-        "link": "/wiki/Riki"
+        "link": "/Riki"
     },
     {
         "hero": "Pugna",
-        "link": "/wiki/Pugna"
+        "link": "/Pugna"
     },
     {
         "hero": "Pudge",
-        "link": "/wiki/Pudge"
+        "link": "/Pudge"
     },
     {
         "hero": "Rubick",
-        "link": "/wiki/Rubick"
+        "link": "/Rubick"
     },
     {
         "hero": "Faceless Void",
-        "link": "/wiki/Faceless_Void"
+        "link": "/Faceless_Void"
     },
     {
         "hero": "Pangolier",
-        "link": "/wiki/Pangolier"
+        "link": "/Pangolier"
     },
     {
         "hero": "Troll Warlord",
-        "link": "/wiki/Troll_Warlord"
+        "link": "/Troll_Warlord"
     },
     {
         "hero": "Sven",
-        "link": "/wiki/Sven"
+        "link": "/Sven"
     },
     {
         "hero": "Weaver",
-        "link": "/wiki/Weaver"
+        "link": "/Weaver"
     },
     {
         "hero": "Alchemist",
-        "link": "/wiki/Alchemist"
+        "link": "/Alchemist"
     },
     {
         "hero": "Axe",
-        "link": "/wiki/Axe"
+        "link": "/Axe"
     },
     {
         "hero": "Phoenix",
-        "link": "/wiki/Phoenix"
+        "link": "/Phoenix"
     },
     {
         "hero": "Beastmaster",
-        "link": "/wiki/Beastmaster"
+        "link": "/Beastmaster"
     },
     {
         "hero": "Lifestealer",
-        "link": "/wiki/Lifestealer"
+        "link": "/Lifestealer"
     },
     {
         "hero": "Slark",
-        "link": "/wiki/Slark"
+        "link": "/Slark"
     },
     {
         "hero": "Marci",
-        "link": "/wiki/Marci"
+        "link": "/Marci"
     }
 ]

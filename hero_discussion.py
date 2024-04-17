@@ -8,7 +8,7 @@ HEROES = json.load(open("heroes.json"))
 
 post_title = "Hero Discussion of the Week: {hero_name} ({date})"
 post_body = """
-## **[{hero_name}](http://www.dota2wiki.com{link})**
+## **[{hero_name}](https://www.liquipedia.net/dota2game{link})**
 
 **Ask/Answer/Comment anything related to {hero_name}!**
 

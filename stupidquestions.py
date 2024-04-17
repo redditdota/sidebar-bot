@@ -7,7 +7,7 @@ Ready the questions! Feel free to ask anything (no matter how seemingly moronic)
 
 Other resources:
 
-- The [Dota 2 Wiki](http://www.dota2wiki.com/wiki/Dota_2_Wiki) has tons of useful information.
+- The [Dota 2 Wiki](https://liquipedia.net/dota2game/) has tons of useful information.
 
 > > When the first hit strikes wtih desolator, the hit stirkes as if the - armor debuff had already been placed?
 

@@ -17,7 +17,7 @@ top_level_comment = "* [{comment}]({link})\n"
 post_title = "Item Discussion of the Week: {item_name} ({date})"
 
 post_body = """
-## **[{item_name}](http://www.dota2wiki.com{link})**
+## **[{item_name}](https://liquipedia.net/dota2game{link})**
 
 **Ask/Answer/Comment anything related to {item_name}!**
 
