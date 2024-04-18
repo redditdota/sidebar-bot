@@ -347,17 +347,17 @@ if __name__ == "__main__":
     schedule.every().monday.at("16:00").do(dota_create_stupid_questions_thread)
     schedule.every().tuesday.at("16:00").do(dota_cleanup_stupid_questions_thread)
 
-    schedule.every().tuesday.at("17:00").do(create_hero_discussion_thread)
-    schedule.every().wednesday.at("17:00").do(cleanup_hero_discussion_thread)
+    # schedule.every().tuesday.at("17:00").do(create_hero_discussion_thread)
+    # schedule.every().wednesday.at("17:00").do(cleanup_hero_discussion_thread)
 
-    schedule.every().thursday.at("17:00").do(create_item_discussion_thread)
-    schedule.every().friday.at("17:00").do(cleanup_item_discussion_thread)
+    # schedule.every().thursday.at("17:00").do(create_item_discussion_thread)
+    # schedule.every().friday.at("17:00").do(cleanup_item_discussion_thread)
 
     # schedule.every().tuesday.at("18:00").do(artifact_create_stupid_questions_thread)
     # schedule.every().wednesday.at("18:00").do(artifact_cleanup_stupid_questions_thread)
 
-    schedule.every().saturday.at("03:00").do(create_battle_cup_thread)
-    schedule.every().sunday.at("03:00").do(cleanup_battle_cup_thread)
+    # schedule.every().saturday.at("03:00").do(create_battle_cup_thread)
+    # schedule.every().sunday.at("03:00").do(cleanup_battle_cup_thread)
 
     while True:
         schedule.run_pending()
