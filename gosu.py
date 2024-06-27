@@ -15,9 +15,9 @@ apiKey = config.get("config", "GOSU_API_KEY")
 def get_gosu_matches():
 
     url = (
-        "http://www.gosugamers.net/api/matches?apiKey="
+        "https://www.gosugamers.net/api/v5/matches/external?apiKey="
         + apiKey
-        + "&game=dota2&maxresults=50"
+        + "&game=dota2&maxresults=25"
     )
     r = requests.get(url)
 
@@ -25,7 +25,7 @@ def get_gosu_matches():
         logging.error("Gosu API Down!")
         return []
 
-    matches = r.json()["matches"]
+    matches = r.json()["data"]
 
     nowdate = datetime.datetime.now(datetime.timezone.utc)
 
@@ -46,9 +46,11 @@ def get_gosu_matches():
 
         team1 = match["firstOpponent"]["shortName"]
         re1 = match["firstOpponent"]["country"]["countryCode"]
+        re1 = re1 if re1 else "wo"
 
         team2 = match["secondOpponent"]["shortName"]
         re2 = match["secondOpponent"]["country"]["countryCode"]
+        re2 = re2 if re2 else "wo"
 
         tournament = match["tournament"]["name"]
 
