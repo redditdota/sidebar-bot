@@ -15,7 +15,7 @@ apiKey = config.get("config", "GOSU_API_KEY")
 def get_gosu_matches():
 
     url = (
-        "https://www.gosugamers.net/api/v5/matches/external?apiKey="
+        "https://www.gosugamers.net/api/v6/matches/external?apiKey="
         + apiKey
         + "&game=dota2&maxresults=25"
     )
