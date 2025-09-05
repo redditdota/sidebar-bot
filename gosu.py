@@ -13,7 +13,6 @@ apiKey = config.get("config", "GOSU_API_KEY")
 
 
 def get_gosu_matches():
-
     url = (
         "https://www.gosugamers.net/api/v6/matches/external?apiKey="
         + apiKey
@@ -32,7 +31,6 @@ def get_gosu_matches():
     sidebar_matches = []
 
     for match in matches:
-
         if len(sidebar_matches) >= 5:
             break
 
@@ -66,18 +64,23 @@ def get_gosu_matches():
             gamedate = dateutil.parser.parse(dt)
             # gamedate = gamedate - datetime.timedelta(hours=1)
             delta = gamedate - nowdate
-            days, hours, mins = (
-                delta.days,
-                delta.seconds // 3600,
-                delta.seconds // 60 % 60,
-            )
 
-            if str(days) != "0":
-                time = str(days) + "d " + str(hours) + "h"
-            elif str(hours) != "0":
-                time = str(hours) + "h " + str(mins) + "m"
+            # If delta is negative, show SOONTM
+            if delta.total_seconds() < 0:
+                time = "SOON™"
             else:
-                time = str(mins) + "m"
+                days, hours, mins = (
+                    delta.days,
+                    delta.seconds // 3600,
+                    delta.seconds // 60 % 60,
+                )
+
+                if str(days) != "0":
+                    time = str(days) + "d " + str(hours) + "h"
+                elif str(hours) != "0":
+                    time = str(hours) + "h " + str(mins) + "m"
+                else:
+                    time = str(mins) + "m"
 
         sidebar_matches.append(
             {
